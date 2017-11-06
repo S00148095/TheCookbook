@@ -1,3 +1,4 @@
+import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -12,6 +13,18 @@ import { MealComponent } from './meal/meal.component';
 import { HomeComponent } from './home/home.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeaderComponent } from './header/header.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'shoppinglist', component: ShoppingListComponent },
+  { path: 'generation', component: GenerationComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'schedule', component: ScheduleComponent },
+  { path: 'details', component: RecipeDetailsComponent },
+  { path: 'login', component: LoginComponent }
+];
 
 @NgModule({
   declarations: [
@@ -25,10 +38,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MealComponent,
     HomeComponent,
     RecipeDetailsComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
