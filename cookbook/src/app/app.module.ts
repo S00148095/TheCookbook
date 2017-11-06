@@ -15,6 +15,8 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -43,7 +45,8 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
