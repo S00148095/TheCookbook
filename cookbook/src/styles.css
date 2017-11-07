@@ -2,7 +2,7 @@
 Colour scheme:
 Green:#00E676
 White:#FAFAFA
-Blue:#4B88A2
+Blue:bootstrap primary blue buttons
 */
 .header
 {
@@ -27,8 +27,4 @@ html, body
 body
 {
     background-color: #FAFAFA;
-}
-.button
-{
-    color: #4B88A2
 }
