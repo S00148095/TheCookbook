@@ -1,8 +1,14 @@
+/*
+Colour scheme:
+Green:#00E676
+White:#FAFAFA
+Blue:bootstrap primary blue buttons
+*/
 .header
 {
     height:10%;
-    background-color: #5BC0EB;
-    color: white;
+    background-color: #00E676;
+    color: #FAFAFA;
     padding-top: 0.1%;
     top:0px;
     z-index: 1;
@@ -17,4 +23,8 @@ html, body
 {
     padding-left: 10%;
     padding-right: 10%;
+}
+body
+{
+    background-color: #FAFAFA;
 }
