@@ -1,3 +1,13 @@
-<p>
-  recipe works!
-</p>
+<div class="row">
+  <div class="col-xs-3">
+    <img class="image" [src]="Recipe.imageUrl" />
+  </div>
+  <div class="col-xs-6">
+    <h2>{{Recipe.name}}</h2>
+    <p>Difficulty: {{Recipe.difficulty}}</p>
+    <p>Time: {{Recipe.time}}</p>
+  </div>
+  <div class="col-xs-3">
+    <button type="button" class="btn btn-primary">Add to Schedule</button>
+  </div>
+</div>
