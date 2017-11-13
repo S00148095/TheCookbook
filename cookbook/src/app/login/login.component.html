@@ -1,3 +1,35 @@
-<p>
-  login works!
-</p>
+<div class="padded">
+  <div class="form-group">
+    <label for="Email">Email address</label>
+    <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="contentexpanded">
+    <div class="form-group">
+      <label for="ConfirmEmail">Confirm email address</label>
+      <input type="email" class="form-control" id="ConfirmEmail" aria-describedby="emailHelp" placeholder="Confirm email">
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="Password">Password</label>
+    <input type="password" class="form-control" id="Password" placeholder="Password">
+  </div>
+  <div class="contentexpanded">
+    <div class="form-group">
+      <label for="ConfirmPassword">Confirm Password</label>
+      <input type="password" class="form-control" id="ConfirmPassword" placeholder="Confirm Password">
+    </div>
+    <div class="form-group">
+      <label class="col-form-label" for="Search">Alergies</label>
+      <input type="text" id="Search" placeholder="Search..">
+    </div>
+    <div class="btn-group btn-group-justified" role="group">
+      <a type="button" class="btn btn-primary" onclick="Expand()">Have an Account?</a>
+      <a type="button" class="btn btn-primary">Create Account</a>
+    </div>
+  </div>
+  <div class="btn-group btn-group-justified contentvisible" role="group">
+    <a type="button" class="btn btn-primary" onclick="Expand()">Don't have an Account?</a>
+    <a type="button" class="btn btn-primary">Log In</a>
+  </div>
+</div>
