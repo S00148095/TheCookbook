@@ -6,12 +6,12 @@
   </div>
 
   <div class="list-group">
-    <li class="list-group-item" *ngFor="let shopping of shoppingList">{{shopping}}
-      <button type="button" class="btn btn-default icon">
-        <span class="glyphicon glyphicon-ok"></span>
-      </button>
-      <button type="button" class="btn btn-default">
+    <li class="list-group-item clearfix" *ngFor="let shopping of shoppingList">{{shopping}}
+      <button type="button" class="btn btn-danger icon">
         <span class="glyphicon glyphicon-remove"></span>
+      </button>
+      <button type="button" class="btn btn-success icon">
+        <span class="glyphicon glyphicon-ok"></span>
       </button>
     </li>
   </div>
