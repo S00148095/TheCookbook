@@ -1,0 +1,40 @@
+{
+	"LOjV7fE624MiRBeRJnWmf2MkCwa2": {
+		"UserID": "1",
+		"BannedFood": ["Mushroom", "Tomato", "Peanut"],
+		"Schedule": [{
+			"Meal": "Toast",
+			"Date": "1-12-2017"
+		}, {
+			"Meal": "Toast",
+			"Date": "3-12-2017"
+		}],
+		"ShoppingList": [{
+			"Ingredient": "Bread",
+			"Quantity": "4 Slices"
+		}, {
+			"Ingredient": "Butter",
+			"Quantity": "10g"
+		}],
+		"UserName": "Joe"
+	},
+	"lVCVqwYMnfWmWlVLXGKsEafwgGQ2": {
+		"UserID": "1",
+		"BannedFood": ["Mushroom", "Tomato", "Peanut"],
+		"Schedule": [{
+			"Meal": "Toast",
+			"Date": "1-12-2017"
+		}, {
+			"Meal": "Toast",
+			"Date": "3-12-2017"
+		}],
+		"ShoppingList": [{
+			"Ingredient": "Bread",
+			"Quantity": "4 Slices"
+		}, {
+			"Ingredient": "Butter",
+			"Quantity": "10g"
+		}],
+		"UserName": "Joe2"
+	}
+}

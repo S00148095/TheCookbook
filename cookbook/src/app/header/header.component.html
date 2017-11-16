@@ -3,8 +3,14 @@
     <div class="col-xs-6">
       <h1 [routerLink]="['../home']">The Cookbook</h1>
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-6" *ngIf="CheckLogin()">
       <button type="button" [routerLink]="['../login']" class="btn right btn-primary">Log In/Sign Up</button>
+    </div>
+    <div class="col-xs-6" *ngIf="CheckLogOut()">
+      <div class="btn-group btn-group right" role="group">
+        <button type="button" (click)="Logout()" class="btn btn-primary">Log Out</button>
+        <button type="button" [routerLink]="['../dashboard']" class="btn btn-primary">Dashboard</button>
+      </div>
     </div>
   </div>
 </div>

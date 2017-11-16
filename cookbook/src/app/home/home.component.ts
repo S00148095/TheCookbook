@@ -1,3 +1,4 @@
+import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe';
 
