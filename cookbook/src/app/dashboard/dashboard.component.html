@@ -1,15 +1,15 @@
 <div class="container">
-  <div class="row">
+  <div class="row" *ngFor="let user of users">
     <div class="main col-md-9">
       <div class="row">
         <div class="text-center">
-          <h1>Welcome JoeBloggs</h1>
+          <h1>Welcome {{ user.username}}</h1>
         </div>
         <div class="text-center">
           <p>What would you like to do?</p>
         </div>
         <div class="text-center">
-          <button class="btn btn-primary">Generate Meals</button>
+          <button class="btn btn-primary" [routerLink]="['../generation']">Generate Meals</button>
         </div>
       </div>
       <hr>
@@ -17,16 +17,12 @@
         <div class="text-center">
           <h1>Shopping List
             <div class="pull-right">
-              <button type="button" class="btn btn-success">Edit</button>
+              <button type="button" class="btn btn-success" [routerLink]="['../shoppinglist']">Edit</button>
             </div>
           </h1>
         </div>
         <ul class="list-group">
-          <li class="list-group-item">Cras justo odio</li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item" *ngFor="let shoppingList of user.shoppingList"> {{shoppingList}}</li>
         </ul>
       </div>
     </div>
