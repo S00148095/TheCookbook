@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -15,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
@@ -25,7 +27,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AuthService } from './services/auth.service';
 
-import { FooterComponent } from './footer/footer.component';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -61,6 +63,8 @@ const routes: Routes = [
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    ToastModule.forRoot(),
+    BrowserAnimationsModule,
     FormsModule
   ],
   providers: [AuthService],
