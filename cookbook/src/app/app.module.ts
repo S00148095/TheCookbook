@@ -29,6 +29,9 @@ import { AuthService } from './services/auth.service';
 
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
+import { ModalModule } from 'ngx-modialog';
+import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -65,6 +68,8 @@ const routes: Routes = [
     AngularFireAuthModule,
     ToastModule.forRoot(),
     BrowserAnimationsModule,
+    ModalModule.forRoot(),
+    BootstrapModalModule,
     FormsModule
   ],
   providers: [AuthService],
