@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IUser } from './user';
+import { User } from '../User';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,24 +8,33 @@ import { IUser } from './user';
 })
 export class DashboardComponent {
   pageTitle: string;
-  users: IUser[] = [
+  userInfo: any =
     {
-      bannedFood: [],
-      schedule: [],
-      shoppingList: ["Tomatoes","Garlic","Pasta","Mince","Onion"],
-      username: 'Joe Bloggs',
-      userEmail: 'abc@mail.com',
-      password: 'abcdefg'
+      BannedFood: ["Mushroom", "Tomato", "Peanut"],
+      Schedule: [{
+        Date: "2017-12-11",
+        Meal: "Toast"
+      }, {
+        Date: "2017-12-3",
+        Meal: "Noodles"
+      }, {
+        Date: "2017-12-5",
+        Meal: "Frozen Pizza"
+      }],
+      ShoppingList: [{
+        Ingredient: "Bread",
+        Quantity: "4 Slices"
+      }, {
+        Ingredient: "Butter",
+        Quantity: "10g"
+      }],
+      UserID: "1",
+      UserName: "Joe2"
     }
-  ]
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
-
-  generateArray(obj){
-    return Object.keys(obj).map((key)=>{ return obj[key]});
- }
-
 }
