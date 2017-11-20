@@ -35,10 +35,10 @@ import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'shoppinglist', component: ShoppingListComponent },
-  { path: 'generation', component: GenerationComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'schedule', component: ScheduleComponent },
+  { path: 'shoppinglist', component: ShoppingListComponent, canActivate: [ AuthService ] },
+  { path: 'generation', component: GenerationComponent, canActivate: [ AuthService ] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [ AuthService ] },
+  { path: 'schedule', component: ScheduleComponent, canActivate: [ AuthService ] },
   { path: 'details', component: RecipeDetailsComponent },
   { path: 'login', component: LoginComponent }
 ];

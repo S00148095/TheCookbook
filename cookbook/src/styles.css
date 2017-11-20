@@ -37,6 +37,9 @@ body
 .header .row h1
 {
     margin: 0px;
+}
+.pointer
+{
     cursor: pointer;
 }
 .image
@@ -72,7 +75,7 @@ body
 .recipe
 {
     display:flex;
-    height:15em;
+    height:12em;
     overflow:hidden;
     margin-top:5px;
     position:relative;

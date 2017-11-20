@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr';
 import { Injectable, ViewContainerRef } from '@angular/core';
 
@@ -9,9 +10,30 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
+  isAuth:boolean;
 
-  constructor(private firebaseAuth: AngularFireAuth,public toastr: ToastsManager){
+  constructor(private firebaseAuth: AngularFireAuth, public toastr: ToastsManager, private router: Router) {
     this.user = firebaseAuth.authState;
+  }
+
+  isAuthenticated(): boolean {
+    this.firebaseAuth.authState.subscribe((resp) => {
+      if (resp != null) {
+        if (resp.uid) {
+          this.isAuth = true;
+        }
+      }
+      else this.isAuth = false;
+    });
+    return this.isAuth;
+  }
+
+  canActivate(): boolean {
+    const isAuth = this.isAuthenticated();
+    if (!isAuth) {
+      this.router.navigateByUrl('/login')
+    }
+    return isAuth;
   }
 
   signup(email: string, password: string) {
@@ -20,9 +42,10 @@ export class AuthService {
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
         console.log('Successfully registered!');
-      })      
-      .catch(err => {this.ShowWarning(err.message);
-      });    
+      })
+      .catch(err => {
+        this.ShowWarning(err.message);
+      });
   }
 
   login(email: string, password: string) {
@@ -32,7 +55,8 @@ export class AuthService {
       .then(value => {
         console.log('Succesfully logged in!');
       })
-      .catch(err => {this.ShowWarning(err.message);
+      .catch(err => {
+        this.ShowWarning(err.message);
       });
   }
 
@@ -42,7 +66,7 @@ export class AuthService {
       .signOut();
   }
 
-  ShowWarning(output:string) {
+  ShowWarning(output: string) {
     this.toastr.warning(output);
   }
 }

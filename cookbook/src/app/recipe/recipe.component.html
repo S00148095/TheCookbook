@@ -1,13 +1,10 @@
-<div class="recipe row">
-  <div class="col-xs-3">
+<div class="recipe row pointer" [routerLink]="['../details']">
+  <div class="col-xs-6">
     <img class="image" [src]="Recipe.imageUrl" />
   </div>
   <div class="col-xs-6">
     <h2>{{Recipe.name}}</h2>
     <p>Difficulty: {{Recipe.difficulty}}</p>
     <p>Time: {{Recipe.time}}</p>
-  </div>
-  <div class="col-xs-3">
-    <button type="button" class="btn right btn-primary" *ngIf="IsGeneration()">Add to Schedule</button>
   </div>
 </div>
