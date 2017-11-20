@@ -20,10 +20,14 @@
       <input type="password" [(ngModel)]="passwordConfirm" class="form-control" id="ConfirmPassword" placeholder="Confirm Password">
     </div>
     <div class="form-group">
+      <label for="Username">Username</label>
+      <input type="text" class="form-control" id="Username" placeholder="Username">
+    </div>
+    <div class="form-group">
       <label for="Search">Allergies <small><i>(optional)</i></small></label>
       <input type="text" class="form-control" id="Search" placeholder="Search..">
       <small id="allergies" class="form-text text-muted">So far:</small> 
-    </div>
+    </div>    
     <div class="btn-group btn-group-justified" role="group">
       <a type="button" class="btn btn-primary" onclick="Expand()">Have an Account?</a>
       <a type="button" class="btn btn-primary" (click)="Signup()">Create Account</a>

@@ -12,10 +12,12 @@ import { Modal } from 'ngx-modialog/plugins/bootstrap';
 export class GenerationComponent {
   numWanted: number;
   numGenerated: number;
-  Recipes: Recipe[] = [
+  recipes: Recipe[] = [
     new Recipe("Beans on Toast", 5, 0, "https://i.imgur.com/GmNT8tF.jpg", ["Bread", "Beans"], ["Put bread in toaster at appropriate settings", "Put beans in microwave", "Wait for the toast and beans to be done", "Pour beans on top of the toast", "Serve"]),
     new Recipe("Toast", 5, 0, "https://i.imgur.com/sUTxDOn.jpg", ["Bread"], ["Put bread in toaster at appropriate settings", "Wait for the toast to be done", "Serve"])
   ]
+  selectedRecipes:Recipe[]=[];
+
   constructor(public modal: Modal) {
     this.numWanted = 4
     this.numGenerated = 0;
@@ -47,5 +49,23 @@ export class GenerationComponent {
   });
   }
   
+  RemoveRecipe()
+  {
+    this.recipes.splice(0,1);
+    if(this.recipes.length<=0)
+    {
+      //add code to get new recipes
+      this.recipes=[
+        new Recipe("Beans on Toast", 5, 0, "https://i.imgur.com/GmNT8tF.jpg", ["Bread", "Beans"], ["Put bread in toaster at appropriate settings", "Put beans in microwave", "Wait for the toast and beans to be done", "Pour beans on top of the toast", "Serve"]),
+        new Recipe("Toast", 5, 0, "https://i.imgur.com/sUTxDOn.jpg", ["Bread"], ["Put bread in toaster at appropriate settings", "Wait for the toast to be done", "Serve"])
+      ];
+    }
+  }
 
+  AddRecipe()
+  {
+    this.selectedRecipes.push(this.recipes[0]);
+    this.numGenerated++;
+    this.RemoveRecipe();
+  }
 }

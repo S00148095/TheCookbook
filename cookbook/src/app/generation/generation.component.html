@@ -1,10 +1,10 @@
 <div class="middle">
   <p class="centred">Generated: {{numGenerated}} of {{numWanted}}</p>
-  <app-recipe [Recipe]=Recipes[0]></app-recipe>
-  <button class="btn btn-danger btn-lg huge">
+  <app-recipe [Recipe]=recipes[0] [isGeneration]=true></app-recipe>
+  <button class="btn btn-danger btn-lg huge" (click)="RemoveRecipe()">
     <span class="glyphicon glyphicon-remove"></span>
   </button>
-  <button class="btn btn-success right btn-lg huge">
+  <button class="btn btn-success right btn-lg huge" (click)="AddRecipe()">
     <span class="glyphicon glyphicon-ok"></span>
   </button>
 </div>
