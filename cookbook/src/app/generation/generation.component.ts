@@ -1,8 +1,6 @@
 import { TestResult } from 'tslint/lib/test';
 import { Component, ViewContainerRef } from '@angular/core';
 import { Recipe } from '../recipe';
-import { Overlay } from 'ngx-modialog';
-import { Modal } from 'ngx-modialog/plugins/bootstrap';
 
 @Component({
   selector: 'app-generation',
@@ -18,17 +16,11 @@ export class GenerationComponent {
   ]
   selectedRecipes:Recipe[]=[];
 
-  constructor(public modal: Modal) {
+  constructor() {
     this.numWanted = 4
     this.numGenerated = 0;
     this.OpenModal();
   }
-
-  CloseModal()
-  {
-    this.modal.overlay.closeAll();
-  }
-
   TestResult(result){
     if(Number(result)) this.numWanted=result
     else this.OpenModal();
@@ -36,17 +28,6 @@ export class GenerationComponent {
 
   OpenModal()
   {
-    const dialogRef = this.modal.prompt()
-    .size('lg')
-    .isBlocking(true)
-    .showClose(false)
-    .keyboard(27)
-    .title('How many days would you like to plan for?')
-    .body('Please enter a number of days as a number')
-    .open()
-    .then( dialogRef => {
-      dialogRef.result.then( result => this.TestResult(result))
-  });
   }
   
   RemoveRecipe()
