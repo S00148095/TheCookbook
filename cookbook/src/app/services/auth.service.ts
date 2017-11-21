@@ -16,24 +16,12 @@ export class AuthService {
     this.user = firebaseAuth.authState;
   }
 
-  isAuthenticated(): boolean {
-    this.firebaseAuth.authState.subscribe((resp) => {
-      if (resp != null) {
-        if (resp.uid) {
-          this.isAuth = true;
-        }
-      }
-      else this.isAuth = false;
+  canActivate(): Observable<boolean> {
+    return this.firebaseAuth.authState.map(authState => {
+      if (!authState) this.router.navigate(['/login']);
+      console.log('activate?', !!authState);
+      return !!authState;
     });
-    return this.isAuth;
-  }
-
-  canActivate(): boolean {
-    const isAuth = this.isAuthenticated();//make this wait for response
-    if (!isAuth) {
-      this.router.navigateByUrl('/login')
-    }
-    return isAuth;
   }
 
   signup(email: string, password: string) {
