@@ -37,6 +37,9 @@ body
 .header .row h1
 {
     margin: 0px;
+}
+.pointer
+{
     cursor: pointer;
 }
 .image
@@ -72,7 +75,7 @@ body
 .recipe
 {
     display:flex;
-    height:10em;
+    height:12em;
     overflow:hidden;
     margin-top:5px;
     position:relative;
@@ -83,4 +86,27 @@ body
 .contentexpanded {
     display: none;
     padding-bottom: 5px;
+}
+.huge
+{
+    width:30%;
+}
+.middle
+{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+    margin: auto;
+}
+.centred
+{
+    text-align: center;
+}
+.hidden
+{
+    display:none;
 }
