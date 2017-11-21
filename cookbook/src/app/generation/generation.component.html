@@ -1,10 +1,18 @@
-<div class="middle">
-  <p class="centred">Generated: {{numGenerated}} of {{numWanted}}</p>
-  <app-recipe [Recipe]=recipes[0]></app-recipe>
-  <button class="btn btn-danger btn-lg huge" (click)="RemoveRecipe()">
-    <span class="glyphicon glyphicon-remove"></span>
-  </button>
-  <button class="btn btn-success right btn-lg huge" (click)="AddRecipe()">
-    <span class="glyphicon glyphicon-ok"></span>
-  </button>
+<div class="remodal-bg">
+  <div class="middle">
+    <p class="centred">Generated: {{numGenerated}} of {{numWanted}}</p>
+    <app-recipe [Recipe]=recipes[0]></app-recipe>
+    <button class="btn btn-danger btn-lg huge" (click)="RemoveRecipe()">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <button class="btn btn-success right btn-lg huge" (click)="AddRecipe()">
+      <span class="glyphicon glyphicon-ok"></span>
+    </button>
+  </div>
+</div>
+<div data-remodal-id="modal">
+  <h1>How many days would you like to plan for?</h1>
+  <input type="number" [(ngModel)]="numWanted"/>
+  <br>
+  <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
 </div>

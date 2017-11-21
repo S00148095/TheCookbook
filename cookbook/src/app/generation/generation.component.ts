@@ -1,6 +1,9 @@
 import { TestResult } from 'tslint/lib/test';
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component, Inject, ViewContainerRef } from '@angular/core';
 import { Recipe } from '../recipe';
+import 'script.js';
+
+declare var myExtObject: any;
 
 @Component({
   selector: 'app-generation',
@@ -19,7 +22,6 @@ export class GenerationComponent {
   constructor() {
     this.numWanted = 4
     this.numGenerated = 0;
-    this.OpenModal();
   }
   TestResult(result){
     if(Number(result)) this.numWanted=result
@@ -28,6 +30,7 @@ export class GenerationComponent {
 
   OpenModal()
   {
+    myExtObject.openModal();
   }
   
   RemoveRecipe()
@@ -48,5 +51,10 @@ export class GenerationComponent {
     this.selectedRecipes.push(this.recipes[0]);
     this.numGenerated++;
     this.RemoveRecipe();
+  }
+
+  ngAfterViewInit()
+  {
+    this.OpenModal();
   }
 }

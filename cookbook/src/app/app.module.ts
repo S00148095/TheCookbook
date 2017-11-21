@@ -29,6 +29,7 @@ import { AuthService } from './services/auth.service';
 
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
