@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   canActivate(): boolean {
-    const isAuth = this.isAuthenticated();
+    const isAuth = this.isAuthenticated();//make this wait for response
     if (!isAuth) {
       this.router.navigateByUrl('/login')
     }
