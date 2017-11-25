@@ -52,9 +52,13 @@ export class GenerationComponent {
   }
   CheckVisibility()
   {
-    if(this.recipes.length>0)
+    if(this.recipes!=undefined&&this.recipes!=null)
     {
-      return true;
+      if(this.recipes.length>0)
+      {
+        return true;
+      }
+      else return false;
     }
     else return false;
   }
