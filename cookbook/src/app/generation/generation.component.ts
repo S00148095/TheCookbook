@@ -18,7 +18,7 @@ export class GenerationComponent {
   selectedRecipes:Recipe[]=[];
 
   constructor(private service:StorageService) {
-    this.numWanted = 4
+    this.numWanted = 1;
     this.numGenerated = 0;
   }
   TestResult(result){
