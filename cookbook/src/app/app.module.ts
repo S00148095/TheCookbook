@@ -1,3 +1,4 @@
+import { StorageService } from './services/storage.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,13 +18,15 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from '../environments/environment';
+
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
 
 import { AuthService } from './services/auth.service';
 
@@ -59,6 +62,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
@@ -68,7 +72,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     FormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,AngularFireAuth, AngularFireDatabase,StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,7 @@
 import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +9,25 @@ import { Recipe } from '../recipe';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  recipes: any[] = []
+  constructor(private service:StorageService) { }
 
-  Recipes:Recipe[]=[
-    new Recipe("Beans on Toast",5,0,"https://i.imgur.com/GmNT8tF.jpg",["Bread","Beans"],["Put bread in toaster at appropriate settings","Put beans in microwave","Wait for the toast and beans to be done","Pour beans on top of the toast","Serve"]),
-    new Recipe("Toast",5,0,"https://i.imgur.com/sUTxDOn.jpg",["Bread"],["Put bread in toaster at appropriate settings","Wait for the toast to be done","Serve"])
-  ]
-  constructor() { }
-
+  GetRecipes()
+  {
+    this.service.sendGetRequest()
+    .subscribe(res => {
+      this.recipes = res.recipes;
+  });
+  }
+  CheckVisibility()
+  {
+    if(this.recipes.length>0)
+    {
+      return true;
+    }
+    else return false;
+  }
   ngOnInit() {
+    this.GetRecipes();
   }
 }

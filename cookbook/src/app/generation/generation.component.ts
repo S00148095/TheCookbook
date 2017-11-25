@@ -1,3 +1,4 @@
+import { StorageService } from '../services/storage.service';
 import { TestResult } from 'tslint/lib/test';
 import { Component, Inject, ViewContainerRef } from '@angular/core';
 import { Recipe } from '../recipe';
@@ -13,13 +14,10 @@ declare var myExtObject: any;
 export class GenerationComponent {
   numWanted: number;
   numGenerated: number;
-  recipes: Recipe[] = [
-    new Recipe("Beans on Toast", 5, 0, "https://i.imgur.com/GmNT8tF.jpg", ["Bread", "Beans"], ["Put bread in toaster at appropriate settings", "Put beans in microwave", "Wait for the toast and beans to be done", "Pour beans on top of the toast", "Serve"]),
-    new Recipe("Toast", 5, 0, "https://i.imgur.com/sUTxDOn.jpg", ["Bread"], ["Put bread in toaster at appropriate settings", "Wait for the toast to be done", "Serve"])
-  ]
+  recipes: any[] = []
   selectedRecipes:Recipe[]=[];
 
-  constructor() {
+  constructor(private service:StorageService) {
     this.numWanted = 4
     this.numGenerated = 0;
   }
@@ -27,34 +25,42 @@ export class GenerationComponent {
     if(Number(result)) this.numWanted=result
     else this.OpenModal();
   }
-
   OpenModal()
   {
     myExtObject.openModal();
   }
-  
+  GetRecipes()
+  {
+    this.service.sendGetRequest()
+    .subscribe(res => {
+      this.recipes = res.recipes;
+  });
+  }  
   RemoveRecipe()
   {
     this.recipes.splice(0,1);
     if(this.recipes.length<=0)
     {
-      //add code to get new recipes
-      this.recipes=[
-        new Recipe("Beans on Toast", 5, 0, "https://i.imgur.com/GmNT8tF.jpg", ["Bread", "Beans"], ["Put bread in toaster at appropriate settings", "Put beans in microwave", "Wait for the toast and beans to be done", "Pour beans on top of the toast", "Serve"]),
-        new Recipe("Toast", 5, 0, "https://i.imgur.com/sUTxDOn.jpg", ["Bread"], ["Put bread in toaster at appropriate settings", "Wait for the toast to be done", "Serve"])
-      ];
+      this.GetRecipes();
     }
   }
-
   AddRecipe()
   {
     this.selectedRecipes.push(this.recipes[0]);
     this.numGenerated++;
     this.RemoveRecipe();
   }
-
+  CheckVisibility()
+  {
+    if(this.recipes.length>0)
+    {
+      return true;
+    }
+    else return false;
+  }
   ngAfterViewInit()
   {
     this.OpenModal();
+    this.GetRecipes();
   }
 }

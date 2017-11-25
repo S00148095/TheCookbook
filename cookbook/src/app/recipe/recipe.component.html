@@ -1,10 +1,9 @@
 <div class="recipe row pointer" [routerLink]="['../details']">
   <div class="col-xs-6">
-    <img class="image" [src]="Recipe.imageUrl" />
+    <img class="image" [src]="Recipe.image" />
   </div>
   <div class="col-xs-6">
-    <h2>{{Recipe.name}}</h2>
-    <p>Difficulty: {{Recipe.difficulty}}</p>
-    <p>Time: {{Recipe.time}}</p>
+    <h2>{{Recipe.title}}</h2>
+    <p>Time to prepare: {{Recipe.readyInMinutes}}</p>
   </div>
 </div>

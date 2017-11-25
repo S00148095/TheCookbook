@@ -1,5 +1,5 @@
 <div class="remodal-bg">
-  <div class="middle">
+  <div class="middle" *ngIf="CheckVisibility()">
     <p class="centred">Generated: {{numGenerated}} of {{numWanted}}</p>
     <app-recipe [Recipe]=recipes[0]></app-recipe>
     <button class="btn btn-danger btn-lg huge" (click)="RemoveRecipe()">

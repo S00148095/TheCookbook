@@ -1,10 +1,9 @@
 export class Recipe {
     constructor
         (
-        public name: string,
-        public time: number,
-        public difficulty: number,
-        public imageUrl:string,
+        public title: string,
+        public readyInMinutes: number,
+        public image:string,
         public ingredients:string[],
         public steps:string[]
         ) {

@@ -15,7 +15,6 @@ function Dialog() {
     var inst = $('[data-remodal-id=modal]').remodal();
     inst.open();
 }
-
 var myExtObject = (function () {
     return {
         openModal: function () {

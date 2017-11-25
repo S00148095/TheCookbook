@@ -1,1 +1,3 @@
-<app-recipe *ngFor="let Recipe of Recipes" [Recipe]="Recipe"></app-recipe>
+<div *ngIf="CheckVisibility()">
+<app-recipe *ngFor="let Recipe of recipes" [Recipe]="Recipe"></app-recipe>
+</div>
