@@ -1,18 +1,19 @@
-<div class="remodal-bg">
-  <div class="middle" *ngIf="CheckVisibility()">
-    <p class="centred">Generated: {{numGenerated}} of {{numWanted}}</p>
-    <app-recipe [Recipe]=recipes[0]></app-recipe>
-    <button class="btn btn-danger btn-lg huge" (click)="RemoveRecipe()">
-      <span class="glyphicon glyphicon-remove"></span>
-    </button>
-    <button class="btn btn-success right btn-lg huge" (click)="AddRecipe()">
-      <span class="glyphicon glyphicon-ok"></span>
-    </button>
-  </div>
+<div class="middle" *ngIf="CheckVisibility()">
+  <p class="centred">Generated: {{numGenerated}} of {{numWanted}}</p>
+  <app-recipe [Recipe]=recipes[0]></app-recipe>
+  <button class="btn btn-danger btn-lg huge" (click)="RemoveRecipe()">
+    <span class="glyphicon glyphicon-remove"></span>
+  </button>
+  <button class="btn btn-success right btn-lg huge" (click)="AddRecipe()">
+    <span class="glyphicon glyphicon-ok"></span>
+  </button>
 </div>
-<div data-remodal-id="modal">
-  <h1>How many days would you like to plan for?</h1>
-  <input type="number" [(ngModel)]="numWanted"/>
-  <br>
-  <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <div class="form-group">
+      <h1>How many days would you like to plan for?</h1>
+      <input type="number" class="form-control" id="numDays" [(ngModel)]="numWanted" />
+    </div>
+    <button type="submit" class="btn btn-primary" onclick="closeModal()">OK</button>
+  </div>
 </div>

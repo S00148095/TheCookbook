@@ -15,56 +15,45 @@ export class GenerationComponent {
   numWanted: number;
   numGenerated: number;
   recipes: any[] = []
-  selectedRecipes:Recipe[]=[];
+  selectedRecipes: Recipe[] = [];
+  showPopup:boolean;
 
-  constructor(private service:StorageService) {
+  constructor(private service: StorageService) {
+    this.GetRecipes();
     this.numWanted = 1;
     this.numGenerated = 0;
+    this.showPopup=true;
   }
-  TestResult(result){
-    if(Number(result)) this.numWanted=result
-    else this.OpenModal();
-  }
-  OpenModal()
-  {
+  OpenModal() {
     myExtObject.openModal();
   }
-  GetRecipes()
-  {
+  GetRecipes() {
     this.service.sendGetRequest()
-    .subscribe(res => {
-      this.recipes = res.recipes;
-  });
-  }  
-  RemoveRecipe()
-  {
-    this.recipes.splice(0,1);
-    if(this.recipes.length<=0)
-    {
+      .subscribe(res => {
+        this.recipes = res.recipes;
+      });
+  }
+  RemoveRecipe() {
+    this.recipes.splice(0, 1);
+    if (this.recipes.length <= 0) {
       this.GetRecipes();
     }
   }
-  AddRecipe()
-  {
+  AddRecipe() {
     this.selectedRecipes.push(this.recipes[0]);
     this.numGenerated++;
     this.RemoveRecipe();
   }
-  CheckVisibility()
-  {
-    if(this.recipes!=undefined&&this.recipes!=null)
-    {
-      if(this.recipes.length>0)
-      {
+  CheckVisibility() {
+    if (this.recipes != undefined && this.recipes != null) {
+      if (this.recipes.length > 0) {
         return true;
       }
       else return false;
     }
     else return false;
   }
-  ngAfterViewInit()
-  {
+  ngAfterViewInit() {
     this.OpenModal();
-    this.GetRecipes();
   }
 }

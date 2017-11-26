@@ -11,7 +11,6 @@ export class StorageService {
     public uid: string;
     url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=true&number=10';
 
-
     constructor(private afd: AngularFireDatabase, private af: AngularFireAuth, private http: HttpClient) { }
     GetUser(): User {
         if (this.uid != null) {
