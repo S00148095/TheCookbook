@@ -15,14 +15,12 @@ export class GenerationComponent {
   numWanted: number;
   numGenerated: number;
   recipes: any[] = []
-  selectedRecipes: Recipe[] = [];
-  showPopup:boolean;
+  selectedRecipes: string[] = [];
 
   constructor(private service: StorageService) {
     this.GetRecipes();
     this.numWanted = 1;
     this.numGenerated = 0;
-    this.showPopup=true;
   }
   OpenModal() {
     myExtObject.openModal();
@@ -40,9 +38,13 @@ export class GenerationComponent {
     }
   }
   AddRecipe() {
-    this.selectedRecipes.push(this.recipes[0]);
+    this.selectedRecipes.push(this.recipes[0].title);
     this.numGenerated++;
     this.RemoveRecipe();
+    if(this.numGenerated>=this.numWanted)
+    {
+      
+    }
   }
   CheckVisibility() {
     if (this.recipes != undefined && this.recipes != null) {
