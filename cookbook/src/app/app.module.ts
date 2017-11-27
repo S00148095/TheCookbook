@@ -18,7 +18,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
@@ -27,18 +27,15 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AuthService } from './services/auth.service';
 
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
-
-import { ModalModule } from 'ngx-modialog';
-import { BootstrapModalModule } from 'ngx-modialog/plugins/bootstrap';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'shoppinglist', component: ShoppingListComponent, canActivate: [ AuthService ] },
-  { path: 'generation', component: GenerationComponent, canActivate: [ AuthService ] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [ AuthService ] },
-  { path: 'schedule', component: ScheduleComponent, canActivate: [ AuthService ] },
+  { path: 'shoppinglist', component: ShoppingListComponent, canActivate: [AuthService] },
+  { path: 'generation', component: GenerationComponent, canActivate: [AuthService] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthService] },
+  { path: 'schedule', component: ScheduleComponent, canActivate: [AuthService] },
   { path: 'details', component: RecipeDetailsComponent },
   { path: 'login', component: LoginComponent }
 ];
@@ -68,8 +65,6 @@ const routes: Routes = [
     AngularFireAuthModule,
     ToastModule.forRoot(),
     BrowserAnimationsModule,
-    ModalModule.forRoot(),
-    BootstrapModalModule,
     FormsModule
   ],
   providers: [AuthService],
