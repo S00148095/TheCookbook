@@ -7,7 +7,7 @@
   <div class="contentexpanded">
     <div class="form-group">
       <label for="ConfirmEmail">Confirm email address</label>
-      <input type="email" class="form-control" id="ConfirmEmail" aria-describedby="emailHelp" placeholder="Confirm email">
+      <input type="email" [(ngModel)]="emailConfirm" class="form-control" id="ConfirmEmail" aria-describedby="emailHelp" placeholder="Confirm email">
       </div>
   </div>
   <div class="form-group">
@@ -17,20 +17,24 @@
   <div class="contentexpanded">
     <div class="form-group">
       <label for="ConfirmPassword">Confirm Password</label>
-      <input type="password" class="form-control" id="ConfirmPassword" placeholder="Confirm Password">
+      <input type="password" [(ngModel)]="passwordConfirm" class="form-control" id="ConfirmPassword" placeholder="Confirm Password">
     </div>
     <div class="form-group">
-      <label for="Search">Allergies</label>
+      <label for="Username">Username</label>
+      <input type="text" class="form-control" id="Username" placeholder="Username">
+    </div>
+    <div class="form-group">
+      <label for="Search">Allergies <small><i>(optional)</i></small></label>
       <input type="text" class="form-control" id="Search" placeholder="Search..">
       <small id="allergies" class="form-text text-muted">So far:</small> 
-    </div>
+    </div>    
     <div class="btn-group btn-group-justified" role="group">
       <a type="button" class="btn btn-primary" onclick="Expand()">Have an Account?</a>
-      <a type="button" class="btn btn-primary" (click)="signup()">Create Account</a>
+      <a type="button" class="btn btn-primary" (click)="Signup()">Create Account</a>
     </div>
   </div>
   <div class="btn-group btn-group-justified contentvisible" role="group">
     <a type="button" class="btn btn-primary" onclick="Expand()">Don't have an Account?</a>
-    <a type="button" class="btn btn-primary" (click)="login()">Log In</a>
+    <a type="button" class="btn btn-primary" (click)="Login()">Log In</a>
   </div>
 </div>

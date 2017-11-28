@@ -1,4 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastsManager } from 'ng2-toastr';
+import { Injectable, ViewContainerRef } from '@angular/core';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -8,9 +10,18 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
+  isAuth:boolean;
 
-  constructor(private firebaseAuth: AngularFireAuth) {
+  constructor(private firebaseAuth: AngularFireAuth, public toastr: ToastsManager, private router: Router) {
     this.user = firebaseAuth.authState;
+  }
+
+  canActivate(): Observable<boolean> {
+    return this.firebaseAuth.authState.map(authState => {
+      if (!authState) this.router.navigate(['/login']);
+      console.log('activate?', !!authState);
+      return !!authState;
+    });
   }
 
   signup(email: string, password: string) {
@@ -18,11 +29,11 @@ export class AuthService {
       .auth
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
-        console.log('Success!', value);
+        console.log('Successfully registered!');
       })
       .catch(err => {
-        console.log('Something went wrong:',err.message);
-      });    
+        this.ShowWarning(err.message);
+      });
   }
 
   login(email: string, password: string) {
@@ -30,10 +41,10 @@ export class AuthService {
       .auth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
-        console.log('Nice, it worked!');
+        console.log('Succesfully logged in!');
       })
       .catch(err => {
-        console.log('Something went wrong:',err.message);
+        this.ShowWarning(err.message);
       });
   }
 
@@ -43,4 +54,7 @@ export class AuthService {
       .signOut();
   }
 
+  ShowWarning(output: string) {
+    this.toastr.warning(output);
+  }
 }

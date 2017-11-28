@@ -1,7 +1,10 @@
+import { StorageService } from './services/storage.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
@@ -15,27 +18,31 @@ import { HomeComponent } from './home/home.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { environment } from '../environments/environment';
+
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 
 import { AuthService } from './services/auth.service';
 
-import { FooterComponent } from './footer/footer.component';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'shoppinglist', component: ShoppingListComponent },
-  { path: 'generation', component: GenerationComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'schedule', component: ScheduleComponent },
+  { path: 'shoppinglist', component: ShoppingListComponent, canActivate: [AuthService] },
+  { path: 'generation', component: GenerationComponent, canActivate: [AuthService] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthService] },
+  { path: 'schedule', component: ScheduleComponent, canActivate: [AuthService] },
   { path: 'details', component: RecipeDetailsComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({
@@ -56,14 +63,19 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFirestoreModule,
+    ToastModule.forRoot(),
+    BrowserAnimationsModule,
+    AngularFirestoreModule,
     FormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, AngularFireAuth, AngularFireDatabase, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

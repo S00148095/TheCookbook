@@ -1,13 +1,9 @@
-<div class="recipe row">
-  <div class="col-xs-3">
-    <img class="image" [src]="Recipe.imageUrl" />
+<div class="recipe row pointer" (click)="MoveToDetails()">
+  <div class="col-xs-6">
+    <img class="image" [src]="Recipe.image" />
   </div>
   <div class="col-xs-6">
-    <h2>{{Recipe.name}}</h2>
-    <p>Difficulty: {{Recipe.difficulty}}</p>
-    <p>Time: {{Recipe.time}}</p>
-  </div>
-  <div class="col-xs-3">
-    <button type="button" class="btn right btn-primary">Add to Schedule</button>
+    <h2>{{Recipe.title}}</h2>
+    <p>Start to finish: {{Recipe.readyInMinutes}} minutes</p>
   </div>
 </div>

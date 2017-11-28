@@ -9,7 +9,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class HeaderComponent implements OnInit {
   login: boolean;
-  constructor(public af: AngularFireAuth, public authService: AuthService) {
+  constructor(public firebaseAuth: AngularFireAuth, public authService: AuthService) {
     this.login = false;
   }
 
@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     this.login=false;
   }
   CheckUser() {
-    this.af.authState.subscribe((resp) => {
+    this.firebaseAuth.authState.subscribe((resp) => {
       if (resp != null) {
         if (resp.uid) {
           this.login = true;

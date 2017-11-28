@@ -1,5 +1,8 @@
+import { StorageService } from '../services/storage.service';
+import { Observable } from 'rxjs/Rx';
 import { Component } from '@angular/core';
-import { IUser } from './user';
+import { User } from '../User';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,25 +10,12 @@ import { IUser } from './user';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  pageTitle: string;
-  users: IUser[] = [
-    {
-      bannedFood: [],
-      schedule: [],
-      shoppingList: ["Tomatoes","Garlic","Pasta","Mince","Onion"],
-      username: 'Joe Bloggs',
-      userEmail: 'abc@mail.com',
-      password: 'abcdefg'
-    }
-  ]
+  userInfo: Observable<any[]>;
 
-  constructor() { }
+  constructor(private db: AngularFireDatabase, private service: StorageService) {
+    let userInfo = this.service.GetUserInfo();
+  }
 
   ngOnInit() {
   }
-
-  generateArray(obj){
-    return Object.keys(obj).map((key)=>{ return obj[key]});
- }
-
 }
