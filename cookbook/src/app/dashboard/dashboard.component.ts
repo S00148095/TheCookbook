@@ -1,7 +1,8 @@
+import { StorageService } from '../services/storage.service';
 import { Observable } from 'rxjs/Rx';
 import { Component } from '@angular/core';
 import { User } from '../User';
-import { AngularFireDatabase } from 'angularfire2/database-deprecated';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,9 +11,9 @@ import { AngularFireDatabase } from 'angularfire2/database-deprecated';
 })
 export class DashboardComponent {
   userInfo: Observable<any[]>;
-   
-  constructor(private db: AngularFireDatabase) {
-    //let userInfo = this.db.list('the-cookbook');
+
+  constructor(private db: AngularFireDatabase, private service: StorageService) {
+    let userInfo = this.service.GetUserInfo();
   }
 
   ngOnInit() {
