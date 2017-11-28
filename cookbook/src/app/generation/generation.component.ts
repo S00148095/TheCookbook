@@ -2,12 +2,9 @@ import { StorageService } from '../services/storage.service';
 import { TestResult } from 'tslint/lib/test';
 import { Component, Inject, ViewContainerRef } from '@angular/core';
 import { Recipe } from '../recipe';
-<<<<<<< HEAD
 import 'script.js';
 
 declare var myExtObject: any;
-=======
->>>>>>> Jamie
 
 @Component({
   selector: 'app-generation',
@@ -29,7 +26,7 @@ export class GenerationComponent {
     myExtObject.openModal();
   }
   GetRecipes() {
-    this.service.sendGetRequest()
+    this.service.sendGetRequestRandomRecipes()
       .subscribe(res => {
         this.recipes = res.recipes;
       });

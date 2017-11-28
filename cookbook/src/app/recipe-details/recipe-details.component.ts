@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe';
+import { StorageService } from '../services/storage.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-details',
@@ -7,14 +9,30 @@ import { Recipe } from '../recipe';
   styleUrls: ['./recipe-details.component.css']
 })
 export class RecipeDetailsComponent implements OnInit {
-  //Recipes:Recipe[]=[
-    //new Recipe("Beans on Toast",5,0,"http://i263.photobucket.com/albums/ii151/daydrifter26/Toast-2.jpg",["Bread","Beans"],["Put bread in toaster at appropriate settings","Put beans in microwave","Wait for the toast and beans to be done","Pour beans on top of the toast","Serve"])
-  //]
+  recipe:Recipe;
+  constructor(private service: StorageService, private router: Router,private route: ActivatedRoute) { }
 
-  recipeName: string = "Beans on Toast";
-  constructor() { }
-
+  GetRecipe(value)
+  {
+    this.service.sendGetRequestRecipeByID(value)
+    .subscribe(res => {
+      this.recipe = res;
+    });
+  }
+  CheckVisibility() {
+    if (this.recipe != undefined && this.recipe != null) return true;
+    else return false;
+  }
   ngOnInit() {
+    this.route.queryParams
+    .filter(params => params.id)
+    .subscribe(params => {      
+    if(params.id)
+    {      
+      this.GetRecipe(params.id);
+    }
+    else this.router.navigate(["../home"]);
+    });
   }
 
 }
