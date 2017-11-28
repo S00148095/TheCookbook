@@ -1,7 +1,8 @@
+import { StorageService } from '../services/storage.service';
 import { Observable } from 'rxjs/Rx';
 import { Component } from '@angular/core';
 import { User } from '../User';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database-deprecated';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,34 +10,12 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  userInfo: FirebaseListObservable<any[]>;
-    /*
-      BannedFood: ["Mushroom", "Tomato", "Peanut"],
-      Schedule: [{
-        Date: "2017-12-11",
-        Meal: "Toast"
-      }, {
-        Date: "2017-12-3",
-        Meal: "Noodles"
-      }, {
-        Date: "2017-12-5",
-        Meal: "Frozen Pizza"
-      }],
-      ShoppingList: [{
-        Ingredient: "Bread",
-        Quantity: "4 Slices"
-      }, {
-        Ingredient: "Butter",
-        Quantity: "10g"
-      }],
-      UserID: "1",
-      UserName: "Joe2"*/
-    
+  userInfo: Observable<any[]>;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private service: StorageService) {
+    let userInfo = this.service.GetUserInfo();
   }
 
   ngOnInit() {
-    this.userInfo = this.db.list('the-cookbook');
   }
 }

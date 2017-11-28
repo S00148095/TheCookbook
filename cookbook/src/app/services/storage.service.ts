@@ -3,17 +3,22 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from '../User';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class StorageService {
     public User: User;
     public uid: string;
-    public userInfo: Observable<any[]>;
+    public userInfo: AngularFireList<any[]>;
+    public user: any[];
     url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=true&number=10';
 
-    constructor(private afd: AngularFireDatabase, private af: AngularFireAuth, private http: HttpClient, public afs: AngularFirestore) { }
+    constructor(private afd: AngularFireDatabase, private af: AngularFireAuth, private http: HttpClient, public afs: AngularFirestore) {
+        this.uid = "";
+        this.userInfo = afd.list('users');
+        //this.userInfo.valueChanges().subscribe(res => res.where('UserID', '==', this.uid));
+     }
     GetUser(): User {
         if (this.uid != null) {
             //this.User = this.afd.object('/' + this.uid).map()
@@ -31,10 +36,15 @@ export class StorageService {
     }
 
     GetUserInfo() {
-        this.userInfo = this.afs.collection('the-cookbook', ref => ref.where('UserID', '==', this.uid))
+        //let userInfo = this.afs.collection('the-cookbook', ref => ref.where('UserID', '==', this.uid)).valueChanges();
+        //this.userInfo = this.afd.list('/users').valueChanges();
+        //console.log(userInfo);
+        //return userInfo;
     }
+
     sendGetRequest() :Observable<any> {
         return this.http.get(this.url,{
             headers: new HttpHeaders().set('X-Mashape-Key','tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
+    }
 }
