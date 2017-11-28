@@ -27,6 +27,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 
 import { AuthService } from './services/auth.service';
 
@@ -40,7 +41,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthService] },
   { path: 'schedule', component: ScheduleComponent, canActivate: [AuthService] },
   { path: 'details', component: RecipeDetailsComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({
@@ -69,6 +71,7 @@ const routes: Routes = [
     AngularFireAuthModule,
     ToastModule.forRoot(),
     BrowserAnimationsModule,
+    AngularFirestoreModule,
     FormsModule
   ],
   providers: [AuthService,AngularFireAuth, AngularFireDatabase,StorageService],

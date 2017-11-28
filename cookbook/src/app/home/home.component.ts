@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   GetRecipes()
   {
-    this.service.sendGetRequest()
+    this.service.sendGetRequestRandomRecipes()
     .subscribe(res => {
       this.recipes = res.recipes;
   });

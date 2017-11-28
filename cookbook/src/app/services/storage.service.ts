@@ -3,17 +3,19 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from '../User';
-import { AngularFireDatabase } from 'angularfire2/database';
-import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase ,AngularFireList} from 'angularfire2/database';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class StorageService {
     public User: User;
     public uid: string;
     public userInfo: Observable<any[]>;
-    url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=true&number=10';
-
-    constructor(private afd: AngularFireDatabase, private af: AngularFireAuth, private http: HttpClient, public afs: AngularFirestore) { }
+    url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/';
+    
+    constructor(private afd: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient, public afs: AngularFirestore) 
+    { }
+    
     GetUser(): User {
         if (this.uid != null) {
             //this.User = this.afd.object('/' + this.uid).map()
@@ -21,7 +23,7 @@ export class StorageService {
         return this.User
     }
     GetUID() {
-        this.af.authState.subscribe((resp) => {
+        this.afa.authState.subscribe((resp) => {
             if (resp != null) {
                 if (resp.uid) {
                     this.uid = resp.uid;
@@ -29,12 +31,17 @@ export class StorageService {
             }
         });
     }
-
     GetUserInfo() {
-        this.userInfo = this.afs.collection('the-cookbook', ref => ref.where('UserID', '==', this.uid))
+        let userInfo = this.afs.collection('the-cookbook', ref => ref.where('UserID', '==', this.uid))
     }
-    sendGetRequest() :Observable<any> {
-        return this.http.get(this.url,{
-            headers: new HttpHeaders().set('X-Mashape-Key','tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
+    sendGetRequestRandomRecipes(): Observable<any> {
+        return this.http.get(this.url + "random?limitLicense=true&number=10", {
+            headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
+    }
+    sendGetRequestRecipeByID(ID): Observable<any> {
+        return this.http.get(this.url + ID + "/information?includeNutrition=false", {
+            headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
+        });
+    }
 }
