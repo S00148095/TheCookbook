@@ -4,6 +4,10 @@
       <div class="row">
         <div class="col">
           <h2>{{recipe.title}}</h2>
+          <img *ngIf="recipe.vegetarian" class="tinyicon" src="https://i.imgur.com/U40fpGR.png">
+          <img *ngIf="recipe.vegan" class="tinyicon" src="https://i.imgur.com/6vahoZN.png">
+          <img *ngIf="recipe.dairyFree" class="tinyicon" src="https://i.imgur.com/9wsbQhH.png">
+          <img *ngIf="recipe.glutenFree" class="tinyicon" src="https://i.imgur.com/ppyauzE.png">
         </div>
       </div>
       <div class="row">
@@ -33,3 +37,4 @@
     <li *ngFor="let step of recipe.analyzedInstructions[0].steps">{{step.step}}</li>
   </div>
 </div>
+<div *ngIf="!CheckVisibility()"><h1>Ooops! Sorry about that, that URL doesn't seem to be valid</h1></div>
