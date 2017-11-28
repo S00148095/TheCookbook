@@ -17,3 +17,9 @@
     <button type="submit" class="btn btn-primary" onclick="closeModal()">OK</button>
   </div>
 </div>
+<div class="middle centred" *ngIf="!CheckVisibility()">
+  <div class="spinner">
+      <div class="cube1"></div>
+      <div class="cube2"></div>
+  </div>
+</div>

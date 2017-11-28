@@ -1,5 +1,9 @@
 <div *ngIf="CheckVisibility()">
 <app-recipe *ngFor="let Recipe of recipes" [Recipe]="Recipe"></app-recipe>
 </div>
-<div class="middle" *ngIf="!CheckVisibility()" ></div>
-<div class="loader"></div>
+<div class="middle centred" *ngIf="!CheckVisibility()">
+    <div class="spinner">
+        <div class="cube1"></div>
+        <div class="cube2"></div>
+    </div>
+</div>
