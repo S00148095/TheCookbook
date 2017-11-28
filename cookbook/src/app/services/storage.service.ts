@@ -3,19 +3,22 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from '../User';
-import { AngularFireDatabase ,AngularFireList} from 'angularfire2/database';
-import { Observable } from 'rxjs';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class StorageService {
     public User: User;
     public uid: string;
-    public userInfo: Observable<any[]>;
+    public userInfo: AngularFireList<any[]>;
+    public user: any[];
     url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/';
     
-    constructor(private afd: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient, public afs: AngularFirestore) 
-    { }
-    
+   constructor(private afd: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient, public afs: AngularFirestore) {
+        this.uid = "";
+        this.userInfo = afd.list('users');
+        //this.userInfo.valueChanges().subscribe(res => res.where('UserID', '==', this.uid));
+     }
     GetUser(): User {
         if (this.uid != null) {
             //this.User = this.afd.object('/' + this.uid).map()

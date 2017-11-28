@@ -69,12 +69,13 @@ const routes: Routes = [
     AngularFireModule.initializeApp(environment.firebase, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFirestoreModule,
     ToastModule.forRoot(),
     BrowserAnimationsModule,
     AngularFirestoreModule,
     FormsModule
   ],
-  providers: [AuthService,AngularFireAuth, AngularFireDatabase,StorageService],
+  providers: [AuthService, AngularFireAuth, AngularFireDatabase, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
