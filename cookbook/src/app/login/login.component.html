@@ -8,7 +8,7 @@
     <div class="form-group">
       <label for="ConfirmEmail">Confirm email address</label>
       <input type="email" [(ngModel)]="emailConfirm" class="form-control" id="ConfirmEmail" aria-describedby="emailHelp" placeholder="Confirm email">
-      </div>
+    </div>
   </div>
   <div class="form-group">
     <label for="Password">Password</label>
@@ -24,10 +24,16 @@
       <input type="text" class="form-control" id="Username" placeholder="Username">
     </div>
     <div class="form-group">
-      <label for="Search">Allergies <small><i>(optional)</i></small></label>
-      <input type="text" class="form-control" id="Search" placeholder="Search..">
-      <small id="allergies" class="form-text text-muted">So far:</small> 
-    </div>    
+      <label for="Search">Allergies and dislikes
+        <small>
+          <i>(optional)</i>
+        </small>
+      </label>
+      <select [(ngModel)]="test" class="selectpicker" data-live-search="true" (change)="getAutocomplete()">
+        <option *ngFor="let Ingredient of ingredient">{{ingredient.name}}</option>
+      </select>
+      <small id="allergies" class="form-text text-muted">So far:</small>
+    </div>
     <div class="btn-group btn-group-justified" role="group">
       <a type="button" class="btn btn-primary" onclick="Expand()">Have an Account?</a>
       <a type="button" class="btn btn-primary" (click)="Signup()">Create Account</a>
