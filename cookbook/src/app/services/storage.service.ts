@@ -12,7 +12,7 @@ export class StorageService {
     public uid: string;
     public userInfo: AngularFireList<any[]>;
     public user: any[];
-    url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/';
+    url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/';
     
    constructor(private afd: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient, public afs: AngularFirestore) {
         this.uid = "";
@@ -38,12 +38,18 @@ export class StorageService {
         let userInfo = this.afs.collection('the-cookbook', ref => ref.where('UserID', '==', this.uid))
     }
     sendGetRequestRandomRecipes(): Observable<any> {
-        return this.http.get(this.url + "random?limitLicense=true&number=10", {
+        return this.http.get(this.url + "recipes/" + "random?limitLicense=true&number=10", {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }
     sendGetRequestRecipeByID(ID): Observable<any> {
-        return this.http.get(this.url + ID + "/information?includeNutrition=false", {
+        return this.http.get(this.url + "recipes/" + ID + "/information?includeNutrition=false", {
+            headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
+        });
+    }
+    sendGetRequestAutocomplete(value): Observable<any> {
+        console.log(this.url + "food/ingredients/autocomplete?metaInformation=false&number=10&query=" + value);
+        return this.http.get(this.url + "food/ingredients/autocomplete?metaInformation=false&number=10&query=" + value, {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }

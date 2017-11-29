@@ -37,4 +37,9 @@
     <li *ngFor="let step of recipe.analyzedInstructions[0].steps">{{step.step}}</li>
   </div>
 </div>
-<div *ngIf="!CheckVisibility()"><h1>Ooops! Sorry about that, that URL doesn't seem to be valid</h1></div>
+<div class="middle centred" *ngIf="!CheckVisibility()">
+  <div class="spinner">
+      <div class="cube1"></div>
+      <div class="cube2"></div>
+  </div>
+</div>
