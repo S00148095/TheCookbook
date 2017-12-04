@@ -1,21 +1,23 @@
 import { StorageService } from '../services/storage.service';
 import { Observable } from 'rxjs/Rx';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../User';
-import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
-  userInfo: Observable<any[]>;
+export class DashboardComponent implements OnInit {
+  public userInfo: Observable<any>;
+  public uid: string;
 
-  constructor(private db: AngularFireDatabase, private service: StorageService) {
-    let userInfo = this.service.GetUserInfo();
-  }
+  constructor(private service: StorageService) { }
 
   ngOnInit() {
+    this.service.GetUserInfo().subscribe( res => { 
+      this.userInfo = res;
+      console.log(JSON.stringify(this.userInfo));
+      });
   }
 }

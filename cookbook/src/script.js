@@ -18,3 +18,8 @@ var myExtObject = (function () {
         }
     }
 })(myExtObject || {});
+
+function SeeHiddenDivs() {
+    $('#NewRemove').removeClass('hidden');
+    $('#NewSuccess').removeClass('hidden');
+};
