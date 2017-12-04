@@ -1,6 +1,6 @@
 {
-	"users": [
-		{
+	"users": {
+		"LOjV7fE624MiRBeRJnWmf2MkCwa2": {
 			"UserID": "LOjV7fE624MiRBeRJnWmf2MkCwa2",
 			"BannedFood": [
 				"Mushroom",
@@ -29,7 +29,7 @@
 			],
 			"UserName": "Joe"
 		},
-		{
+		"lVCVqwYMnfWmWlVLXGKsEafwgGQ2": {
 			"UserID": "lVCVqwYMnfWmWlVLXGKsEafwgGQ2",
 			"BannedFood": [
 				"Mushroom",
@@ -58,5 +58,5 @@
 			],
 			"UserName": "Joe2"
 		}
-	]
+	}
 }

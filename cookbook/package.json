@@ -13,7 +13,11 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^5.0.5",
+<<<<<<< HEAD
     "@angular/cdk": "^5.0.0-rc.1",
+=======
+    "@angular/cdk": "^5.0.0-rc.2",
+>>>>>>> 87dd1d9244fdbca98f21b1d9ffb5299abe11e8d8
     "@angular/common": "^5.0.5",
     "@angular/compiler": "^5.0.5",
     "@angular/core": "^5.0.5",
@@ -21,6 +25,10 @@
     "@angular/http": "^5.0.5",
     "@angular/platform-browser": "^5.0.5",
     "@angular/platform-browser-dynamic": "^5.0.5",
+<<<<<<< HEAD
+=======
+    "@angular/platform-server": "^5.0.5",
+>>>>>>> 87dd1d9244fdbca98f21b1d9ffb5299abe11e8d8
     "@angular/router": "^5.0.5",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.5",
     "angularfire2": "^5.0.0-rc.3",
@@ -34,12 +42,12 @@
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "^1.5.3",
-    "@angular/compiler-cli": "^5.0.2",
-    "@angular/language-service": "^5.0.2",
+    "@angular/cli": "^1.5.5",
+    "@angular/compiler-cli": "^5.0.5",
+    "@angular/language-service": "^5.0.5",
     "@types/jasmine": "^2.8.2",
     "@types/jasminewd2": "~2.0.2",
-    "@types/node": "^8.0.53",
+    "@types/node": "^8.0.54",
     "codelyzer": "^4.0.1",
     "jasmine-core": "^2.8.0",
     "jasmine-spec-reporter": "^4.2.1",
@@ -47,11 +55,11 @@
     "karma-chrome-launcher": "^2.2.0",
     "karma-cli": "~1.0.1",
     "karma-coverage-istanbul-reporter": "^1.2.1",
-    "karma-jasmine": "~1.1.0",
+    "karma-jasmine": "^1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "^5.2.0",
     "ts-node": "^3.3.0",
     "tslint": "^5.8.0",
-    "typescript": "^2.6.1"
+    "typescript": "^2.6.2"
   }
 }
