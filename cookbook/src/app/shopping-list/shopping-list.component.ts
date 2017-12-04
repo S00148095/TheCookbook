@@ -23,6 +23,10 @@ export class ShoppingListComponent implements OnInit {
     console.log(item);
   }
 
+  EditItem(item: string) {
+    console.log(item);
+  }
+
   RemoveItem(item: string) {
     console.log(item);
   }
