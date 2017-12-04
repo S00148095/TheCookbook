@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
   emailConfirm: string;
   passwordConfirm: string;
   ingredients:any[];
+  bannedIngredients:string[]=[];
+  bannedIngredientsTest:string[]=[];
   test:string="";
 
   constructor(public authService: AuthService, private router: Router, public af: AngularFireAuth, public toastr: ToastsManager, vcr: ViewContainerRef,private service: StorageService) {
@@ -50,6 +52,14 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         this.ingredients=res;
       });
+  }
+  AddIngredient(ingredient)
+  {
+    this.bannedIngredientsTest=this.bannedIngredients; 
+    this.bannedIngredientsTest.push(ingredient);    
+    this.bannedIngredients = this.bannedIngredientsTest;
+    this.test="";
+    this.ingredients=[];
   }
 
   public ngOnInit(): void {

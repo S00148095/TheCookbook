@@ -24,15 +24,13 @@
       <input type="text" class="form-control" id="Username" placeholder="Username">
     </div>
     <div class="form-group">
-      <label for="Search">Allergies and dislikes
-        <small>
-          <i>(optional)</i>
-        </small>
-      </label>
-      <select [(ngModel)]="test" class="selectpicker" data-live-search="true" (change)="getAutocomplete()">
-        <option *ngFor="let Ingredient of ingredient">{{ingredient.name}}</option>
-      </select>
-      <small id="allergies" class="form-text text-muted">So far:</small>
+      <label for="Search">Allergies and dislikes<small>(optional)</small></label>
+      <input type="text" [(ngModel)]="test" (input)="getAutocomplete()" placeholder="Search ingredients..." class="input form-control">
+      <small id="allergies" class="form-text text-muted">So far: <span *ngFor="let ban of bannedIngredients">{{ban}} </span></small>
+      <div *ngFor="let ingredient of ingredients">
+        <a type="button" class="btn inline right btn-primary btn-xs" (click)="AddIngredient(ingredient.name)">Add</a>
+        <p>{{ingredient?.name}}</p>        
+        </div>
     </div>
     <div class="btn-group btn-group-justified" role="group">
       <a type="button" class="btn btn-primary" onclick="Expand()">Have an Account?</a>
