@@ -13,11 +13,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^5.0.5",
-<<<<<<< HEAD
-    "@angular/cdk": "^5.0.0-rc.1",
-=======
     "@angular/cdk": "^5.0.0-rc.2",
->>>>>>> 87dd1d9244fdbca98f21b1d9ffb5299abe11e8d8
     "@angular/common": "^5.0.5",
     "@angular/compiler": "^5.0.5",
     "@angular/core": "^5.0.5",
@@ -25,10 +21,7 @@
     "@angular/http": "^5.0.5",
     "@angular/platform-browser": "^5.0.5",
     "@angular/platform-browser-dynamic": "^5.0.5",
-<<<<<<< HEAD
-=======
     "@angular/platform-server": "^5.0.5",
->>>>>>> 87dd1d9244fdbca98f21b1d9ffb5299abe11e8d8
     "@angular/router": "^5.0.5",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.5",
     "angularfire2": "^5.0.0-rc.3",
