@@ -12,24 +12,14 @@ export class StorageService {
     public uid: string = '';
     url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/';
 
-    public userList: AngularFireList<User[]>;
-    public userInfo: AngularFireObject<User>;
-    private basePath: string = '/users';
+    public userInfo: Observable<any>;
 
     constructor(private db: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient) {
+        this.GetUID();
     }
 
-    GetUserList(query = {}):AngularFireList<User[]> {
-        this.userList = this.db.list(this.basePath ,
-            query => query
-        );
-        return this.userList
-    }
-
-    GetUserInfo(key: string): AngularFireObject<User>{
-        const userPath = '${this.basePath}/${uid}';
-        this.userInfo = this.db.object(userPath)
-        return this.userInfo
+    GetUserInfo(): Observable<any> {
+        return this.http.get("https://the-cookbook.firebaseio.com/users/" + this.uid + ".json")
     }
 
     GetUser(): User {
@@ -37,6 +27,10 @@ export class StorageService {
             //this.User = this.afd.object('/' + this.uid).map()
         }
         return this.User
+    }
+
+    RemoveShoppingListItem() {
+
     }
 
     GetUID() {

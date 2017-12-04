@@ -5,12 +5,12 @@
     </div>
   </div>
 
-  <div class="list-group">
-    <li class="list-group-item clearfix" *ngFor="let shopping of shoppingList">{{shopping}}
-      <button type="button" class="btn btn-danger icon">
+  <div class="list-group" *ngIf="userInfo">
+    <li class="list-group-item clearfix" *ngFor="let shopping of userInfo.ShoppingList">{{shopping.Ingredient}} ({{shopping.Quantity}})
+      <button type="button" id="Remove" class="btn btn-danger icon" (click)="RemoveItem(shopping.Ingredient)">
         <span class="glyphicon glyphicon-remove"></span>
       </button>
-      <button type="button" class="btn btn-success icon">
+      <button type="button" id="Success" class="btn btn-success icon" (click)="MarkSuccess(shopping.Ingredient)">
         <span class="glyphicon glyphicon-ok"></span>
       </button>
     </li>

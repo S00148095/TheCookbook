@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from '../services/storage.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-shopping-list',
@@ -6,12 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-  shoppingList:string[] = [
-    "Tomatoes","Garlic","Pasta","Mince","Onion"
-  ]
-  constructor() { }
+  public userInfo: Observable<any>;
+  
+  constructor(private service: StorageService) { }
 
   ngOnInit() {
+    this.service.GetUserInfo().subscribe( res => { 
+      this.userInfo = res;
+      console.log(JSON.stringify(this.userInfo));
+      });
   }
 
+  MarkSuccess(item: string) {
+    console.log(item);
+  }
+
+  RemoveItem(item: string) {
+    console.log(item);
+  }
 }
