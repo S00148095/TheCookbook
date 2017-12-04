@@ -48,7 +48,7 @@ export class StorageService {
         });
     }
     sendGetRequestAutocomplete(value): Observable<any> {
-       return this.http.get(this.url + "food/ingredients/autocomplete?metaInformation=false&number=10&query=" + value, {
+       return this.http.get(this.url + "food/ingredients/autocomplete?metaInformation=false&number=5&query=" + value, {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }

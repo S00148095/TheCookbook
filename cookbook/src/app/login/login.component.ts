@@ -53,6 +53,18 @@ export class LoginComponent implements OnInit {
         this.ingredients=res;
       });
   }
+  checkLength()
+  {
+    if(this.test=="")
+    {
+      this.ingredients=[];
+    }
+    if(this.ingredients.length>0)
+    {
+      return true;
+    }
+    else return false
+  }
   AddIngredient(ingredient)
   {
     this.bannedIngredientsTest=this.bannedIngredients; 
