@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from '../services/storage.service';
+import { User } from '../User';
 
 @Component({
   selector: 'app-schedule',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./schedule.component.css']
 })
 export class ScheduleComponent implements OnInit {
-
-  constructor() { }
+  userInfo:User;
+  constructor(private service:StorageService) { }
 
   ngOnInit() {
+    this.service.GetUserInfo().subscribe( res => { 
+      this.userInfo = res;
+      console.log(JSON.stringify(this.userInfo));
+      });
   }
 
 }

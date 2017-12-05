@@ -32,6 +32,9 @@
         <div class="well">
           <ul class="list-group">
             <li class="nav-header">Schedule</li>
+            <div class="pull-right">
+              <button type="button" class="btn btn-success" [routerLink]="['../schedule']">Edit</button>
+            </div>
             <li class="list-group-item" *ngFor="let scheduleItem of userInfo.Schedule">{{scheduleItem.Meal}} ({{scheduleItem.Date | date: 'dd/MM/yyyy GGGG'}})</li>
           </ul>
         </div>
