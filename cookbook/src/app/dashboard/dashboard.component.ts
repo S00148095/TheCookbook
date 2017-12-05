@@ -9,10 +9,11 @@ import { User } from '../User';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  public userInfo: Observable<any>;
+  public userInfo: User;
   public uid: string;
 
-  constructor(private service: StorageService) { }
+  constructor(private service: StorageService) {
+   }
 
   ngOnInit() {
     this.service.GetUserInfo().subscribe( res => { 
