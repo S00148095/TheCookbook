@@ -18,12 +18,12 @@
       </button>
     </li>
     <li class="list-group-item clearfix">
-      <input type="text" onclick="SeeHiddenDivs()" placeholder="Item Name">
-      <input type="text" onclick="SeeHiddenDivs()" placeholder="Quantity">
+      <input type="text" #NewItemName onclick="SeeHiddenDivs()" placeholder="Item Name">
+      <input type="text" #NewQuantity onclick="SeeHiddenDivs()" placeholder="Quantity">
       <button type="button" id="NewRemove" class="btn btn-danger icon hidden">
         <span class="glyphicon glyphicon-remove"></span>
       </button>
-      <button type="button" id="NewSuccess" class="btn btn-success icon hidden">
+      <button type="button" id="NewSuccess" class="btn btn-success icon hidden"  (click)="insertNewShoppingItem(NewItemName.value, NewQuantity.value)">
         <span class="glyphicon glyphicon-ok"></span>
       </button></li>
   </div>

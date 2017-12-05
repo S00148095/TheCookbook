@@ -23,3 +23,8 @@ function SeeHiddenDivs() {
     $('#NewRemove').removeClass('hidden');
     $('#NewSuccess').removeClass('hidden');
 };
+
+function HideDivs() {
+    $('#NewRemove').addClass('hidden');
+    $('#NewSuccess').addClass('hidden');
+}

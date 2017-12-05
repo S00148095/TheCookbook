@@ -12,6 +12,9 @@ export class StorageService {
     public uid: string = '';
     url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/';
     firebaseURL: string = 'https://the-cookbook.firebaseio.com/';
+    private httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      };
 
     constructor(private db: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient, private router: Router) {
         this.GetUID();
@@ -23,6 +26,7 @@ export class StorageService {
     RemoveShoppingListItem() {
 
     }
+
     GetUID() {
         this.afa.authState.subscribe((resp) => {
             if (resp != null) {
@@ -38,6 +42,13 @@ export class StorageService {
             this.router.navigate(['../dashboard']);
         });
     }
+
+    UpdateShoppingList(shoppingList: Object): Observable<any>  {
+        return this.http.patch("https://the-cookbook.firebaseio.com/users/" + this.uid + "/ShoppingList.json", 
+                        shoppingList, 
+                        this.httpOptions);
+    }
+
     sendGetRequestRandomRecipes(): Observable<any> {
         return this.http.get(this.url + "recipes/" + "random?limitLicense=true&number=10", {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
@@ -53,4 +64,6 @@ export class StorageService {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }
+
+
 }
