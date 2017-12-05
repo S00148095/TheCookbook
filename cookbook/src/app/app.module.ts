@@ -32,6 +32,7 @@ import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore
 import { AuthService } from './services/auth.service';
 
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { DatePipe } from '@angular/common';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -75,7 +76,7 @@ const routes: Routes = [
     AngularFirestoreModule,
     FormsModule
   ],
-  providers: [AuthService, AngularFireAuth, AngularFireDatabase, StorageService],
+  providers: [AuthService, AngularFireAuth, AngularFireDatabase, StorageService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

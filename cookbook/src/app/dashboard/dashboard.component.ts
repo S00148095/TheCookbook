@@ -11,7 +11,6 @@ import { User } from '../User';
 export class DashboardComponent implements OnInit {
   public userInfo: User;
   public uid: string;
-  retryCount:number=0;
 
   constructor(private service: StorageService) {
    }
