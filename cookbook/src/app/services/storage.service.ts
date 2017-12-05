@@ -8,9 +8,11 @@ import * as firebase from 'firebase/app';
 
 @Injectable()
 export class StorageService {
-    public User: User;
     public uid: string = '';
     url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/';
+    private httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      };
 
     public userInfo: Observable<any>;
 
@@ -22,17 +24,6 @@ export class StorageService {
         return this.http.get("https://the-cookbook.firebaseio.com/users/" + this.uid + ".json")
     }
 
-    GetUser(): User {
-        if (this.uid != null) {
-            //this.User = this.afd.object('/' + this.uid).map()
-        }
-        return this.User
-    }
-
-    RemoveShoppingListItem() {
-
-    }
-
     GetUID() {
         this.afa.authState.subscribe((resp) => {
             if (resp != null) {
@@ -41,6 +32,12 @@ export class StorageService {
                 }
             }
         });
+    }
+
+    UpdateShoppingList(shoppingList: Object): Observable<any>  {
+        return this.http.patch("https://the-cookbook.firebaseio.com/users/" + this.uid + "/ShoppingList.json", 
+                        shoppingList, 
+                        this.httpOptions);
     }
 
     sendGetRequestRandomRecipes(): Observable<any> {
@@ -60,4 +57,6 @@ export class StorageService {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }
+
+
 }

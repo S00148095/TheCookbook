@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService } from '../services/storage.service';
-import { Observable } from 'rxjs/Observable';
+import { User } from '../User'
 
 @Component({
   selector: 'app-shopping-list',
@@ -8,14 +8,27 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent implements OnInit {
-  public userInfo: Observable<any>;
-  
+  public userInfo: User;
+  public shoppingListCount: string;
+  public shoppingList: Object;
   constructor(private service: StorageService) { }
 
   ngOnInit() {
     this.service.GetUserInfo().subscribe( res => { 
       this.userInfo = res;
       console.log(JSON.stringify(this.userInfo));
+      });
+  }
+
+  insertNewShoppingItem(itemName: string, quantity: string) {
+    this.shoppingListCount = (this.userInfo.ShoppingList.length).toString();
+    this.shoppingList = { [this.shoppingListCount]: {
+      Ingredient: itemName,
+      Quantity: quantity,
+      Done: "No" }};
+
+    this.service.UpdateShoppingList(this.shoppingList).subscribe( res => { 
+      this.shoppingList = res;
       });
   }
 
@@ -28,6 +41,5 @@ export class ShoppingListComponent implements OnInit {
   }
 
   RemoveItem(item: string) {
-    console.log(item);
   }
 }
