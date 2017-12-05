@@ -6,13 +6,15 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
 import { Observable } from 'rxjs/Observable';
+import { StorageService } from './storage.service';
 
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
-  isAuth:boolean;
+  isAuth: boolean;
+  post: any;
 
-  constructor(private firebaseAuth: AngularFireAuth, public toastr: ToastsManager, private router: Router) {
+  constructor(private firebaseAuth: AngularFireAuth, private afa: AngularFireAuth, public toastr: ToastsManager, private router: Router, private service: StorageService) {
     this.user = firebaseAuth.authState;
   }
 
@@ -24,12 +26,30 @@ export class AuthService {
     });
   }
 
-  signup(email: string, password: string) {
+  populatePost(uid, bannedIngredients, Username) {
+    this.post = {
+      "UserID": uid,
+      "BannedFood": bannedIngredients,
+      "Schedule": [],
+      "ShoppingList": [],
+      "UserName": Username
+    }
+    return this.post;
+  }
+
+  signup(email: string, password: string, Username: string, bannedIngredients: string[]) {
     this.firebaseAuth
       .auth
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
         console.log('Successfully registered!');
+        this.afa.authState.subscribe((resp) => {
+          if (resp != null) {
+            if (resp.uid) {
+              this.service.sendPostRequestNewUser(this.populatePost(resp.uid,bannedIngredients,Username), resp.uid);
+            }
+          }
+        });
       })
       .catch(err => {
         this.ShowWarning(err.message);

@@ -8,11 +8,9 @@ import * as firebase from 'firebase/app';
 
 @Injectable()
 export class StorageService {
-    public User: User;
     public uid: string = '';
     url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/';
-
-    public userInfo: Observable<any>;
+    firebaseURL:string='https://the-cookbook.firebaseio.com/';
 
     constructor(private db: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient) {
         this.GetUID();
@@ -21,18 +19,9 @@ export class StorageService {
     GetUserInfo(): Observable<any> {
         return this.http.get("https://the-cookbook.firebaseio.com/users/" + this.uid + ".json")
     }
-
-    GetUser(): User {
-        if (this.uid != null) {
-            //this.User = this.afd.object('/' + this.uid).map()
-        }
-        return this.User
-    }
-
     RemoveShoppingListItem() {
 
     }
-
     GetUID() {
         this.afa.authState.subscribe((resp) => {
             if (resp != null) {
@@ -42,19 +31,22 @@ export class StorageService {
             }
         });
     }
-
+    sendPostRequestNewUser(postData:any,user:string)
+    {   
+        this.http.patch(this.firebaseURL+"users/"+user+".json",postData).subscribe(res => {
+            console.log(res);
+          });
+    }
     sendGetRequestRandomRecipes(): Observable<any> {
         return this.http.get(this.url + "recipes/" + "random?limitLicense=true&number=10", {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }
-
     sendGetRequestRecipeByID(ID): Observable<any> {
         return this.http.get(this.url + "recipes/" + ID + "/information?includeNutrition=false", {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }
-
     sendGetRequestAutocomplete(value): Observable<any> {
        return this.http.get(this.url + "food/ingredients/autocomplete?metaInformation=false&number=5&query=" + value, {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
