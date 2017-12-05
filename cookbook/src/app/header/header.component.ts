@@ -29,7 +29,9 @@ export class HeaderComponent implements OnInit {
         if (resp.uid) {
           this.login = true;
         }
+        else{this.login=false;}
       }
+      else{this.login=false;}
     });
   }
 

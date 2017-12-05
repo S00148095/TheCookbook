@@ -17,7 +17,6 @@ export class AuthService {
   constructor(private firebaseAuth: AngularFireAuth, private afa: AngularFireAuth, public toastr: ToastsManager, private router: Router, private service: StorageService) {
     this.user = firebaseAuth.authState;
   }
-
   canActivate(): Observable<boolean> {
     return this.firebaseAuth.authState.map(authState => {
       if (!authState) this.router.navigate(['/login']);
@@ -25,7 +24,6 @@ export class AuthService {
       return !!authState;
     });
   }
-
   populatePost(uid, bannedIngredients, Username) {
     this.post = {
       "UserID": uid,
@@ -36,7 +34,6 @@ export class AuthService {
     }
     return this.post;
   }
-
   signup(email: string, password: string, Username: string, bannedIngredients: string[]) {
     this.firebaseAuth
       .auth
@@ -55,25 +52,23 @@ export class AuthService {
         this.ShowWarning(err.message);
       });
   }
-
   login(email: string, password: string) {
     this.firebaseAuth
       .auth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
         console.log('Succesfully logged in!');
+        this.router.navigate(['/dashboard']);
       })
       .catch(err => {
         this.ShowWarning(err.message);
       });
   }
-
   logout() {
     this.firebaseAuth
       .auth
       .signOut();
   }
-
   ShowWarning(output: string) {
     this.toastr.warning(output);
   }

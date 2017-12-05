@@ -11,13 +11,18 @@ import { User } from '../User';
 export class DashboardComponent implements OnInit {
   public userInfo: Observable<any>;
   public uid: string;
+  retryCount:number=0;
 
   constructor(private service: StorageService) { }
 
-  ngOnInit() {
+  getUserInfo()
+  {
     this.service.GetUserInfo().subscribe( res => { 
       this.userInfo = res;
-      console.log(JSON.stringify(this.userInfo));
+      console.log(this.userInfo);
       });
+  }
+  ngOnInit() {
+    this.getUserInfo();
   }
 }

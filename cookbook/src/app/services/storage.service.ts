@@ -5,14 +5,15 @@ import { User } from '../User';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class StorageService {
     public uid: string = '';
     url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/';
-    firebaseURL:string='https://the-cookbook.firebaseio.com/';
+    firebaseURL: string = 'https://the-cookbook.firebaseio.com/';
 
-    constructor(private db: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient) {
+    constructor(private db: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient, private router: Router) {
         this.GetUID();
     }
 
@@ -31,11 +32,11 @@ export class StorageService {
             }
         });
     }
-    sendPostRequestNewUser(postData:any,user:string)
-    {   
-        this.http.patch(this.firebaseURL+"users/"+user+".json",postData).subscribe(res => {
+    sendPostRequestNewUser(postData: any, user: string) {
+        this.http.patch(this.firebaseURL + "users/" + user + ".json", postData).subscribe(res => {
             console.log(res);
-          });
+            this.router.navigate(['../dashboard']);
+        });
     }
     sendGetRequestRandomRecipes(): Observable<any> {
         return this.http.get(this.url + "recipes/" + "random?limitLicense=true&number=10", {
@@ -48,7 +49,7 @@ export class StorageService {
         });
     }
     sendGetRequestAutocomplete(value): Observable<any> {
-       return this.http.get(this.url + "food/ingredients/autocomplete?metaInformation=false&number=5&query=" + value, {
+        return this.http.get(this.url + "food/ingredients/autocomplete?metaInformation=false&number=5&query=" + value, {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }

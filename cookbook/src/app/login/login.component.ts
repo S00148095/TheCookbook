@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
   constructor(public authService: AuthService, private router: Router, public af: AngularFireAuth, public toastr: ToastsManager, vcr: ViewContainerRef, private service: StorageService) {
       this.toastr.setRootViewContainerRef(vcr);
     }
-
   Signup() {
       if (this.email && this.emailConfirm && this.password && this.passwordConfirm && this.Username) {
         if (this.email == this.emailConfirm) {
@@ -70,15 +69,7 @@ export class LoginComponent implements OnInit {
       this.test = "";
       this.ingredients = [];
     }
-    
   public ngOnInit(): void {
-      this.af.authState.subscribe((resp) => {
-        if (resp != null) {
-          if (resp.uid) {
-            this.router.navigate(['../dashboard']);
-          }
-        }
-      });
     }
   }
 
