@@ -21,9 +21,12 @@
             </div>
           </h1>
         </div>
-        <ul class="list-group">
+        <ul class="list-group" *ngIf="userInfo.ShoppingList; else noShoppingList">
           <li class="list-group-item" *ngFor="let shoppingListItem of userInfo.ShoppingList">{{shoppingListItem.Ingredient}} ({{shoppingListItem.Quantity}})</li>
         </ul>
+        <ng-template class="list-group" #noShoppingList>
+          <li class="list-group-item">No Items found. Click Edit to add items to list</li>
+        </ng-template>
       </div>
     </div>
 
@@ -35,7 +38,12 @@
             <div class="pull-right">
               <button type="button" class="btn btn-success" [routerLink]="['../schedule']">Edit</button>
             </div>
-            <li class="list-group-item" *ngFor="let scheduleItem of userInfo.Schedule">{{scheduleItem.Meal}} ({{scheduleItem.Date | date: 'dd/MM/yyyy GGGG'}})</li>
+            <div *ngIf="userInfo.ShoppingList; else noSchedule">
+              <li class="list-group-item" *ngFor="let scheduleItem of userInfo.Schedule">{{scheduleItem.Meal}} ({{scheduleItem.Date | date: 'dd/MM/yyyy GGGG'}})</li>
+            </div>
+            <ng-template class="list-group" #noSchedule>
+              <li class="list-group-item">No Schedule found. Click Edit to add items to Schedule</li>
+            </ng-template>
           </ul>
         </div>
       </div>

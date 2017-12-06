@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class StorageService {
     public uid: string = '';
+    public userInfo: User;
     url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/';
     firebaseURL: string = 'https://the-cookbook.firebaseio.com/';
     private httpOptions = {
@@ -25,6 +26,10 @@ export class StorageService {
     }
     RemoveShoppingListItem() {
 
+    }
+    LogOut() {
+        this.uid = "";
+        this.userInfo = null;
     }
 
     GetUID() {
