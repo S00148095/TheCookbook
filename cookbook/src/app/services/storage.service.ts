@@ -11,6 +11,7 @@ import { Title } from '@angular/platform-browser';
 @Injectable()
 export class StorageService {
     public uid: string = '';
+    public userInfo: User;
     url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/';
     firebaseURL: string = 'https://the-cookbook.firebaseio.com/';
     private httpOptions = {
@@ -22,7 +23,7 @@ export class StorageService {
     }
 
     GetUserInfo(): Observable<any> {
-        return this.http.get("https://the-cookbook.firebaseio.com/users/" + this.uid + ".json")
+        return this.http.get(this.firebaseURL + "/users/" + this.uid + ".json")
     }
     RemoveShoppingListItem() {
 
@@ -31,6 +32,11 @@ export class StorageService {
     {
         this.title.setTitle(value);
     }
+    LogOut() {
+        this.uid = "";
+        this.userInfo = null;
+    }
+
     GetUID() {
         this.afa.authState.subscribe((resp) => {
             if (resp != null) {
@@ -52,7 +58,7 @@ export class StorageService {
         });
     }  
     UpdateShoppingList(shoppingList: Object): Observable<any>  {
-        return this.http.patch("https://the-cookbook.firebaseio.com/users/" + this.uid + "/ShoppingList.json", 
+        return this.http.patch(this.firebaseURL + "/users/" + this.uid + "/ShoppingList.json", 
                         shoppingList, 
                         this.httpOptions);
     }

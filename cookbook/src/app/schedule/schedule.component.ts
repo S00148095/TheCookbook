@@ -4,7 +4,6 @@ import { User } from '../User';
 import { DatePipe } from '@angular/common';
 import { Meal } from '../Meal';
 import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import { userInfo } from 'os';
 
 @Component({
   selector: 'app-schedule',

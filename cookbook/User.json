@@ -10,12 +10,12 @@
 		"UserName" : "ShaneB"
 	  },
 	  "LOjV7fE624MiRBeRJnWmf2MkCwa2" : {
-		"BannedFood" : [ "Mushroom", "Tomato", "Peanut" ],
+		"BannedFood" : [ "Mushroom", "Tomato", "Peanut" ], 
 		"Schedule" : [ {
-		  "Date" : "01-12-2017",
+		  "Date" : "1-12-2017",
 		  "Meal" : "Toast"
 		}, {
-		  "Date" : "03-12-2017",
+		  "Date" : "3-12-2017",
 		  "Meal" : "Toast"
 		} ],
 		"ShoppingList" : [ {
@@ -63,10 +63,10 @@
 	  "lVCVqwYMnfWmWlVLXGKsEafwgGQ2" : {
 		"BannedFood" : [ "Mushroom", "Tomato", "Peanut" ],
 		"Schedule" : [ {
-		  "Date" : "01-12-2017",
+		  "Date" : "1-12-2017",
 		  "Meal" : "Toast"
 		}, {
-		  "Date" : "03-12-2017",
+		  "Date" : "3-12-2017",
 		  "Meal" : "Toast"
 		} ],
 		"ShoppingList" : [ {
