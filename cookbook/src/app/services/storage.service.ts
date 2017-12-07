@@ -6,6 +6,7 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angular
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Injectable()
 export class StorageService {
@@ -16,7 +17,7 @@ export class StorageService {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       };
 
-    constructor(private db: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient, private router: Router) {
+    constructor(private db: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient, private router: Router, private title: Title) {
         this.GetUID();
     }
 
@@ -26,7 +27,10 @@ export class StorageService {
     RemoveShoppingListItem() {
 
     }
-
+    updateTitle(value)
+    {
+        this.title.setTitle(value);
+    }
     GetUID() {
         this.afa.authState.subscribe((resp) => {
             if (resp != null) {
@@ -42,7 +46,11 @@ export class StorageService {
             this.router.navigate(['../dashboard']);
         });
     }
-
+    sendPostRequestUpdateSchedule(postData: any) {
+        this.http.patch(this.firebaseURL + "users/" + this.uid + "/Schedule.json", postData).subscribe(res => {
+            console.log(res);
+        });
+    }  
     UpdateShoppingList(shoppingList: Object): Observable<any>  {
         return this.http.patch("https://the-cookbook.firebaseio.com/users/" + this.uid + "/ShoppingList.json", 
                         shoppingList, 

@@ -1,66 +1,86 @@
 {
-	"users": {
-		"LOjV7fE624MiRBeRJnWmf2MkCwa2": {
-			"UserID": "LOjV7fE624MiRBeRJnWmf2MkCwa2",
-			"BannedFood": [
-				"Mushroom",
-				"Tomato",
-				"Peanut"
-			],
-			"Schedule": [
-				{
-					"Meal": "Toast",
-					"Date": "1-12-2017"
-				},
-				{
-					"Meal": "Toast",
-					"Date": "3-12-2017"
-				}
-			],
-			"ShoppingList": [
-				{
-					"Ingredient": "Bread",
-					"Quantity": "4 Slices",
-					"Done": "Yes"
-				},
-				{
-					"Ingredient": "Butter",
-					"Quantity": "10g",
-					"Done": "No"
-				}
-			],
-			"UserName": "Joe"
-		},
-		"lVCVqwYMnfWmWlVLXGKsEafwgGQ2": {
-			"UserID": "lVCVqwYMnfWmWlVLXGKsEafwgGQ2",
-			"BannedFood": [
-				"Mushroom",
-				"Tomato",
-				"Peanut"
-			],
-			"Schedule": [
-				{
-					"Meal": "Toast",
-					"Date": "1-12-2017"
-				},
-				{
-					"Meal": "Toast",
-					"Date": "3-12-2017"
-				}
-			],
-			"ShoppingList": [
-				{
-					"Ingredient": "Bread",
-					"Quantity": "4 Slices",
-					"Done": "No"
-				},
-				{
-					"Ingredient": "Butter",
-					"Quantity": "10g",
-					"Done": "Yes"
-				}
-			],
-			"UserName": "John Madden"
-		}
+	"users" : {
+	  "12s5nmpyTVMsEPJTSslIgbkfpsa2" : {
+		"BannedFood" : [ "mushroom" ],
+		"UserID" : "12s5nmpyTVMsEPJTSslIgbkfpsa2",
+		"UserName" : "CiaraL"
+	  },
+	  "KSfE11ADK2PGgyqLjoIPQ8WbyeE3" : {
+		"UserID" : "KSfE11ADK2PGgyqLjoIPQ8WbyeE3",
+		"UserName" : "ShaneB"
+	  },
+	  "LOjV7fE624MiRBeRJnWmf2MkCwa2" : {
+		"BannedFood" : [ "Mushroom", "Tomato", "Peanut" ],
+		"Schedule" : [ {
+		  "Date" : "01-12-2017",
+		  "Meal" : "Toast"
+		}, {
+		  "Date" : "03-12-2017",
+		  "Meal" : "Toast"
+		} ],
+		"ShoppingList" : [ {
+		  "Done" : "Yes",
+		  "Ingredient" : "Bread",
+		  "Quantity" : "4 Slices"
+		}, {
+		  "Done" : "No",
+		  "Ingredient" : "Butter",
+		  "Quantity" : "10g"
+		}, {
+		  "Done" : "No",
+		  "Ingredient" : "Cheese",
+		  "Quantity" : "10g"
+		}, {
+		  "Done" : "No",
+		  "Ingredient" : "Chicken",
+		  "Quantity" : "2"
+		}, {
+		  "Done" : "No",
+		  "Ingredient" : "Crisps",
+		  "Quantity" : "60 bags"
+		} ],
+		"UserID" : "LOjV7fE624MiRBeRJnWmf2MkCwa2",
+		"UserName" : "Joe"
+	  },
+	  "PUgTZRrIfRQyd759QjpuDM53VtE3" : {
+		"BannedFood" : [ "pear" ],
+		"UserID" : "PUgTZRrIfRQyd759QjpuDM53VtE3",
+		"UserName" : "Silentgolem"
+	  },
+	  "QFRuzCtCReWyxjarjqvTt1p8DaJ2" : {
+		"UserID" : "QFRuzCtCReWyxjarjqvTt1p8DaJ2",
+		"UserName" : "Test"
+	  },
+	  "QX4rLYkvhmNtRNXTs6SVY8fQaQE3" : {
+		"UserID" : "QX4rLYkvhmNtRNXTs6SVY8fQaQE3",
+		"UserName" : "JoeG"
+	  },
+	  "RIsnPUSAYheyuoAGdiRIjaJ5Oyg1" : {
+		"BannedFood" : [ "salt" ],
+		"UserID" : "RIsnPUSAYheyuoAGdiRIjaJ5Oyg1",
+		"UserName" : "JHiggins"
+	  },
+	  "lVCVqwYMnfWmWlVLXGKsEafwgGQ2" : {
+		"BannedFood" : [ "Mushroom", "Tomato", "Peanut" ],
+		"Schedule" : [ {
+		  "Date" : "01-12-2017",
+		  "Meal" : "Toast"
+		}, {
+		  "Date" : "03-12-2017",
+		  "Meal" : "Toast"
+		} ],
+		"ShoppingList" : [ {
+		  "Done" : "No",
+		  "Ingredient" : "Bread",
+		  "Quantity" : "4 Slices"
+		}, {
+		  "Done" : "Yes",
+		  "Ingredient" : "Butter",
+		  "Quantity" : "10g"
+		} ],
+		"UserID" : "lVCVqwYMnfWmWlVLXGKsEafwgGQ2",
+		"UserName" : "John Madden"
+	  }
 	}
-}
+  }
+  

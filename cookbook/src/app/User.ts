@@ -1,6 +1,8 @@
+import { Meal } from "./Meal";
+
 export interface User {
     BannedFood: string[],
-    Schedule: any[],
+    Schedule: Meal[],
     ShoppingList: any[],
     UserID: string,
     UserName: string

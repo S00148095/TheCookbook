@@ -11,7 +11,6 @@ import { User } from '../User';
 export class DashboardComponent implements OnInit {
   public userInfo: User;
   public uid: string;
-  retryCount:number=0;
 
   constructor(private service: StorageService) {
    }
@@ -25,5 +24,6 @@ export class DashboardComponent implements OnInit {
   }
   ngOnInit() {
     this.getUserInfo();
+    this.service.updateTitle("Dashboard - The Cookbook");
   }
 }

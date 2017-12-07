@@ -1,51 +1,73 @@
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<h3>
-				h3. Lorem ipsum dolor sit amet.
-			</h3>
-			<div class="btn-group btn-group-lg">
-				 
-				<button class="btn btn-default" type="button">
-					<em class="glyphicon glyphicon-align-left"></em> Previous
-				</button> 
-				<button class="btn btn-default" type="button">
-					<em class="glyphicon glyphicon-align-center"></em> Now
-				</button> 
-				<button class="btn btn-default" type="button">
-					<em class="glyphicon glyphicon-align-right"></em> Next
-				</button>
+<div *ngIf="CheckVisibility()">
+	<div class="container-fluid">
+		<div class="contentexpanded">
+			<table class="table table-bordered table-hover">
+				<tr>
+					<th class="col-xs-6">Meal</th>
+					<th class="col-xs-6">Date</th>
+				</tr>
+				<tr *ngFor="let meal of testSchedule; let i = index">
+					<td class="col-xs-6">{{meal.Meal}}</td>
+					<td class="col-xs-6"><input [(ngModel)]="testSchedule[i].Date"></td>
+				</tr>
+			</table>
+			<div class="btn-group btn-group-justified" role="group">
+				<a type="button" class="btn btn-danger" onclick="Expand()">Cancel</a>
+				<a type="button" class="btn btn-success" (click)="Commit()">Save</a>
 			</div>
-			<div class="row">
-				<div class="col-md-2">
-					<p class="lead">
-						Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-					</p>
+		</div>
+		<div class="centred row contentvisible">
+			<div class="col-md-12">
+				<h3>Schedule for: {{DateRangeStartString}} to {{DateRangeEndString}}</h3>
+				<a type="button" class="btn btn-success" onclick="Expand()">Edit schedule</a>
+				<div class="btn-group btn-group-justified" role="group">
+					<a type="button" class="btn btn-primary" (click)="Previous()">Previous Week</a>
+					<a type="button" class="btn btn-primary" (click)="Now()">Go To This Week</a>
+					<a type="button" class="btn btn-primary" (click)="Next()">Next Week</a>
 				</div>
-				<div class="col-md-2">
-          <p class="lead">
-          Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-        </p>
-				</div>
-				<div class="col-md-2">
-            <p class="lead">
-            Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-          </p>
-				</div>
-				<div class="col-md-2">
-            <p class="lead">
-            Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-          </p>
-				</div>
-				<div class="col-md-2">
-            <p class="lead">
-            Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-          </p>
-				</div>
-				<div class="col-md-2">
-            <p class="lead">
-            Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>. Aliquam eget sapien sapien. Curabitur in metus urna. In hac habitasse platea dictumst. Phasellus eu sem sapien, sed vestibulum velit. Nam purus nibh, lacinia non faucibus et, pharetra in dolor. Sed iaculis posuere diam ut cursus. <em>Morbi commodo sodales nisi id sodales. Proin consectetur, nisi id commodo imperdiet, metus nunc consequat lectus, id bibendum diam velit et dui.</em> Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <small>Aliquam mi erat, aliquam vel luctus eu, pharetra quis elit. Nulla euismod ultrices massa, et feugiat ipsum consequat eu.</small>
-          </p>
+				<div class="row seven-cols">
+					<div class="col-md-1 calendar">
+						<h4>{{DateRangeStartString}}</h4>
+						<div class="dropdown note" *ngFor="let meal of scheduleDay1">
+							<p>{{meal.Meal}}</p>
+						</div>
+					</div>
+					<div class="col-md-1 calendar">
+						<h4>{{Day2String}}</h4>
+						<div class="dropdown note" *ngFor="let meal of scheduleDay2">
+							<p>{{meal.Meal}}</p>
+						</div>
+					</div>
+					<div class="col-md-1 calendar">
+						<h4>{{Day3String}}</h4>
+						<div class="dropdown note" *ngFor="let meal of scheduleDay3">
+							<p>{{meal.Meal}}</p>
+						</div>
+					</div>
+					<div class="col-md-1 calendar">
+						<h4>{{Day4String}}</h4>
+						<div class="dropdown note" *ngFor="let meal of scheduleDay4">
+							<p>{{meal.Meal}}</p>
+						</div>
+					</div>
+					<div class="col-md-1 calendar">
+						<h4>{{Day5String}}</h4>
+						<div class="dropdown note" *ngFor="let meal of scheduleDay5">
+							<p>{{meal.Meal}}</p>
+						</div>
+					</div>
+					<div class="col-md-1 calendar">
+						<h4>{{Day6String}}</h4>
+						<div class="dropdown note" *ngFor="let meal of scheduleDay6">
+							<p>{{meal.Meal}}</p>
+						</div>
+					</div>
+					<div class="col-md-1 calendar">
+						<h4>{{DateRangeEndString}}</h4>
+						<div class="dropdown note" *ngFor="let meal of scheduleDay7">
+							<p>{{meal.Meal}}</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

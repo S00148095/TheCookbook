@@ -18,6 +18,7 @@ export class ShoppingListComponent implements OnInit {
       this.userInfo = res;
       console.log(JSON.stringify(this.userInfo));
       });
+      this.service.updateTitle("Shopping List- The Cookbook");
   }
 
   insertNewShoppingItem(itemName: string, quantity: string) {

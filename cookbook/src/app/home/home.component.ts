@@ -33,5 +33,6 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit() {
     this.GetRecipes();
+    this.service.updateTitle("Home - The Cookbook");
   }
 }

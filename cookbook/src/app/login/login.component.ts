@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
       this.ingredients = [];
     }
   public ngOnInit(): void {
+    this.service.updateTitle("Login - The Cookbook");
     }
   }
 

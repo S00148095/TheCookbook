@@ -56,6 +56,7 @@ export class GenerationComponent {
     else return false;
   }
   ngAfterViewInit() {
+    this.service.updateTitle("Generation - The Cookbook");
     this.OpenModal();
   }
 }
