@@ -22,7 +22,7 @@ export class StorageService {
     }
 
     GetUserInfo(): Observable<any> {
-        return this.http.get("https://the-cookbook.firebaseio.com/users/" + this.uid + ".json")
+        return this.http.get(this.firebaseURL + "/users/" + this.uid + ".json")
     }
     RemoveShoppingListItem() {
 
@@ -49,7 +49,7 @@ export class StorageService {
     }
 
     UpdateShoppingList(shoppingList: Object): Observable<any>  {
-        return this.http.patch("https://the-cookbook.firebaseio.com/users/" + this.uid + "/ShoppingList.json", 
+        return this.http.patch(this.firebaseURL + "/users/" + this.uid + "/ShoppingList.json", 
                         shoppingList, 
                         this.httpOptions);
     }
