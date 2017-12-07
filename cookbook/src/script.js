@@ -11,6 +11,14 @@ function closeModal() {
     var modal = document.getElementById('myModal');
     modal.style.display = "none";
 }
+function SeeHiddenDivs() {
+    $('#NewRemove').removeClass('hidden');
+    $('#NewSuccess').removeClass('hidden');
+};
+function HideDivs() {
+    $('#NewRemove').addClass('hidden');
+    $('#NewSuccess').addClass('hidden');
+}
 var myExtObject = (function () {
     return {
         openModal: function () {
@@ -18,13 +26,3 @@ var myExtObject = (function () {
         }
     }
 })(myExtObject || {});
-
-function SeeHiddenDivs() {
-    $('#NewRemove').removeClass('hidden');
-    $('#NewSuccess').removeClass('hidden');
-};
-
-function HideDivs() {
-    $('#NewRemove').addClass('hidden');
-    $('#NewSuccess').addClass('hidden');
-}

@@ -221,7 +221,6 @@ body
   .calendar
   {
       border: 1px solid lightgray;
-      height:100%;
   }
   @media (min-width: 768px){
     .seven-cols .col-md-1,
@@ -259,4 +258,8 @@ body
     box-shadow: 2px 2px 2px 2px lightgray;
     padding:0px;
     text-align: center;
+}
+.table.table-bordered.table-hover
+{
+    margin-bottom:0px;
 }

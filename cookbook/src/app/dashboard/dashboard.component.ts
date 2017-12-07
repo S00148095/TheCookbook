@@ -24,5 +24,6 @@ export class DashboardComponent implements OnInit {
   }
   ngOnInit() {
     this.getUserInfo();
+    this.service.updateTitle("Dashboard - The Cookbook");
   }
 }

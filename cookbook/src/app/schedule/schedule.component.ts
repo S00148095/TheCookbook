@@ -3,13 +3,15 @@ import { StorageService } from '../services/storage.service';
 import { User } from '../User';
 import { DatePipe } from '@angular/common';
 import { Meal } from '../Meal';
+import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.css']
 })
-export class ScheduleComponent implements OnInit {
+export class ScheduleComponent implements AfterViewInit {
   userInfo: User;
   now: Date;
   DateRangeStart: Date;
@@ -28,6 +30,7 @@ export class ScheduleComponent implements OnInit {
   scheduleDay5: Meal[] = [];
   scheduleDay6: Meal[] = [];
   scheduleDay7: Meal[] = [];
+  testSchedule: Meal[] = [];
   day2: Date = new Date;
   day3: Date = new Date;
   day4: Date = new Date;
@@ -37,11 +40,31 @@ export class ScheduleComponent implements OnInit {
   constructor(private service: StorageService, private datePipe: DatePipe) {
     this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
+      this.testSchedule=this.userInfo.Schedule;
       this.now = new Date;
       this.DateRangeStart = new Date;
       this.DateRangeEnd = new Date;
       this.SetEndDate();
     });
+  }  
+  CheckVisibility() {
+    if (this.userInfo != undefined && this.userInfo != null) return true;
+    else return false;
+  }
+  Commit()
+  {
+    for(var i=0;i<this.testSchedule.length;i++) {
+      if(Date.parse(this.testSchedule[i].Date)&&i==this.testSchedule.length-1)
+      {
+        this.userInfo.Schedule=this.testSchedule;
+        this.service.sendPostRequestUpdateSchedule(this.userInfo.Schedule);
+      }
+      else
+      {
+        this.testSchedule=this.userInfo.Schedule;
+        break;
+      }
+    };
   }
   splitSchedule() {
     this.scheduleDay1 = [];
@@ -109,8 +132,7 @@ export class ScheduleComponent implements OnInit {
     result.setDate(result.getDate() + days);
     return result;
   }
-  ngOnInit() {
-
+  ngAfterViewInit(): void {
+    this.service.updateTitle("Schedule - The Cookbook");
   }
-
 }

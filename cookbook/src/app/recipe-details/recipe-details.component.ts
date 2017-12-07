@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe';
 import { StorageService } from '../services/storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-recipe-details',
@@ -11,13 +10,13 @@ import { Title } from '@angular/platform-browser';
 })
 export class RecipeDetailsComponent implements OnInit {
   recipe: Recipe;
-  constructor(private service: StorageService, private router: Router, private route: ActivatedRoute, private title: Title) { }
+  constructor(private service: StorageService, private router: Router, private route: ActivatedRoute) { }
 
   GetRecipe(value) {
     this.service.sendGetRequestRecipeByID(value)
       .subscribe(res => {
         this.recipe = res;
-        this.title.setTitle(this.recipe.title);
+        this.service.updateTitle(this.recipe.title+" - The Cookbook");
       });
   }
   CheckVisibility() {
