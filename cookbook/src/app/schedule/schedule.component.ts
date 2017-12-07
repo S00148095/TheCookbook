@@ -53,17 +53,26 @@ export class ScheduleComponent implements AfterViewInit {
   Commit()
   {
     for(var i=0;i<this.testSchedule.length;i++) {
-      if(Date.parse(this.testSchedule[i].Date)&&i==this.testSchedule.length-1)
+      if(Date.parse(this.testSchedule[i].Date))
       {
+        if(i==this.testSchedule.length-1){
         this.userInfo.Schedule=this.testSchedule;
-        this.service.sendPostRequestUpdateSchedule(this.userInfo.Schedule);
+        this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));
+        }
       }
       else
       {
         this.testSchedule=this.userInfo.Schedule;
+        console.log("invalid");
         break;
       }
     };
+  }
+  formatPost(array)
+  {
+    return {
+      "Schedule":array
+    }
   }
   splitSchedule() {
     this.scheduleDay1 = [];

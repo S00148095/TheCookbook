@@ -52,11 +52,11 @@ export class StorageService {
             this.router.navigate(['../dashboard']);
         });
     }
-    sendPostRequestUpdateSchedule(postData: any) {
-        this.http.patch(this.firebaseURL + "users/" + this.uid + "/Schedule.json", postData).subscribe(res => {
-            console.log(res);
-        });
-    }  
+    sendPostRequestUpdateSchedule(postData: Object)  {
+        this.http.patch(this.firebaseURL + "/users/" + this.uid + ".json", 
+                        postData).subscribe(res => {
+                            console.log(res);});
+    }
     UpdateShoppingList(shoppingList: Object): Observable<any>  {
         return this.http.patch(this.firebaseURL + "/users/" + this.uid + "/ShoppingList.json", 
                         shoppingList, 
