@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
@@ -32,7 +33,8 @@ import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore
 import { AuthService } from './services/auth.service';
 
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
-import { DatePipe } from '@angular/common';
+
+import { DragulaModule } from  'ng2-dragula';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -74,6 +76,7 @@ const routes: Routes = [
     ToastModule.forRoot(),
     BrowserAnimationsModule,
     AngularFirestoreModule,
+    DragulaModule,
     FormsModule
   ],
   providers: [AuthService, AngularFireAuth, AngularFireDatabase, StorageService, DatePipe],

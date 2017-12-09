@@ -16,7 +16,7 @@ export class StorageService {
     firebaseURL: string = 'https://the-cookbook.firebaseio.com/';
     private httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-      };
+    };
 
     constructor(private db: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient, private router: Router, private title: Title) {
         this.GetUID();
@@ -28,8 +28,7 @@ export class StorageService {
     RemoveShoppingListItem() {
 
     }
-    updateTitle(value)
-    {
+    updateTitle(value) {
         this.title.setTitle(value);
     }
     LogOut() {
@@ -52,15 +51,16 @@ export class StorageService {
             this.router.navigate(['../dashboard']);
         });
     }
-    sendPostRequestUpdateSchedule(postData: Object)  {
-        this.http.patch(this.firebaseURL + "/users/" + this.uid + ".json", 
-                        postData).subscribe(res => {
-                            console.log(res);});
+    sendPostRequestUpdateSchedule(postData: Object) {
+        this.http.patch(this.firebaseURL + "/users/" + this.uid + ".json",
+            postData).subscribe(res => {
+                console.log(res);
+            });
     }
-    UpdateShoppingList(shoppingList: Object): Observable<any>  {
-        return this.http.patch(this.firebaseURL + "/users/" + this.uid + "/ShoppingList.json", 
-                        shoppingList, 
-                        this.httpOptions);
+    UpdateShoppingList(shoppingList: Object): Observable<any> {
+        return this.http.patch(this.firebaseURL + "/users/" + this.uid + "/ShoppingList.json",
+            shoppingList,
+            this.httpOptions);
     }
 
     sendGetRequestRandomRecipes(): Observable<any> {
@@ -78,6 +78,10 @@ export class StorageService {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }
-
+    sendPostRequestUpdateScheduleAndShoppingList(postData) {
+        this.http.patch(this.firebaseURL + "/users/" + this.uid + ".json", postData).subscribe(res => {
+        this.router.navigate(['../schedule']);
+        });
+    }
 
 }

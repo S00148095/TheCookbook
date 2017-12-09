@@ -1,8 +1,10 @@
+import { Ingredient } from "./Ingredient";
+
 export interface Recipe {
     id: number,
     title: string,
     readyInMinutes: number,
     image:string,
-    ingredients:string[],
+    extendedIngredients:Ingredient[],
     steps:string[]        
 }

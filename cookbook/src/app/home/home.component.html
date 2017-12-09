@@ -1,5 +1,6 @@
 <div *ngIf="CheckVisibility()">
-<app-recipe *ngFor="let Recipe of recipes" [Recipe]="Recipe"></app-recipe>
+<app-recipe *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe>
+<a type="button" class="btn btn-block btn-success" (click)="GetRecipes()" *ngIf="showButton">More</a>
 </div>
 <div class="middle centred" *ngIf="!CheckVisibility()">
     <div class="spinner">

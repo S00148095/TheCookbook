@@ -23,6 +23,9 @@ var myExtObject = (function () {
     return {
         openModal: function () {
             openModal();
+        },
+        Expand: function () {
+            Expand();
         }
     }
 })(myExtObject || {});

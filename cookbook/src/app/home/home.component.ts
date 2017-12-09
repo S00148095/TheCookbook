@@ -9,14 +9,21 @@ import { StorageService } from '../services/storage.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  showButton: boolean;
   recipes: any[] = []
-  constructor(private service:StorageService) { }
+  constructor(private service:StorageService) {
+    
+   }
 
   GetRecipes()
   {
+    this.showButton=false;
     this.service.sendGetRequestRandomRecipes()
     .subscribe(res => {
-      this.recipes = res.recipes;
+      this.showButton=true;
+      res.recipes.forEach(element => {        
+      this.recipes.push(element);
+    });
   });
   }
   CheckVisibility()

@@ -1,4 +1,5 @@
 export interface Meal {
     Meal: string,
-    Date: string
+    Date: string,
+    ID: string
 }
