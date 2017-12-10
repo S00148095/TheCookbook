@@ -19,7 +19,6 @@ import { HomeComponent } from './home/home.component';
 import { RecipeDetailsComponent } from './recipe-details/recipe-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -61,8 +60,7 @@ const routes: Routes = [
     HomeComponent,
     RecipeDetailsComponent,
     DashboardComponent,
-    HeaderComponent,
-    FooterComponent
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

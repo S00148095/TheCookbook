@@ -11,14 +11,26 @@ export class ListingComponent implements OnInit {
   public userInfo: User;
   public shoppingListCount: string;
   public shoppingList: Object;
+  public boolArray: boolean[] = [];
+  public index: number;
+  public itemName: string;
+  public quantity: string;
   constructor(private service: StorageService) { }
 
   ngOnInit() {
+    this.service.updateTitle("Shopping List- The Cookbook");
+    this.RefreshData();
+  }
+
+  private RefreshData() {
     this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
       console.log(JSON.stringify(this.userInfo));
+      for (var i = 0; i < this.userInfo.ShoppingList.length; i++) {
+        this.boolArray[i] = true;
+        (console.log(this.boolArray[i]));
+      }
     });
-    this.service.updateTitle("Shopping List- The Cookbook");
   }
 
   InsertNewShoppingItem(itemName: string, quantity: string) {
@@ -33,26 +45,31 @@ export class ListingComponent implements OnInit {
 
     this.service.UpdateShoppingList(this.shoppingList).subscribe(res => {
       this.shoppingList = res;
+      this.RefreshData();
     });
   }
 
   MarkSuccess(index: number, item: string, quantity: string) {
     if (index !== -1) {
       this.shoppingList = {
-          Ingredient: item,
-          Quantity: quantity,
-          Done: "Yes"
-        
+        Ingredient: item,
+        Quantity: quantity,
+        Done: "Yes"
       };
 
       this.service.MarkShoppingListItem(this.shoppingList, index).subscribe(res => {
         this.shoppingList = res;
+        this.RefreshData();
       });
     }
   }
 
-  EditItem(item: string) {
-    console.log(item);
+  EditItem(index: number, itemName: string, quantity: string) {
+    this.boolArray[index] = false;
+    this.index = index;
+    this.itemName = itemName;
+    this.quantity = quantity;
+    console.log(index, this.boolArray[index]);
   }
 
   RemoveItem(index: number) {
@@ -63,5 +80,27 @@ export class ListingComponent implements OnInit {
         this.shoppingList = res;
       });;
     }
+  }
+
+  Cancel() {
+    for (var i = 0; i < this.userInfo.ShoppingList.length; i++) {
+      this.boolArray[i] = true;
+      console.log(this.boolArray[i]);
+    }
+  }
+
+  UpdateItem(itemName: string, quantity: string) {
+    this.shoppingList = {
+      [this.index]: {
+        Ingredient: itemName,
+        Quantity: quantity,
+        Done: "No"
+      }
+    };
+
+    this.service.EditShoppingListItem(this.shoppingList).subscribe(res => {
+      this.shoppingList = res;
+      this.RefreshData();
+    });
   }
 }
