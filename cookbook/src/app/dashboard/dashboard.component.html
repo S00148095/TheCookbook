@@ -42,7 +42,7 @@
               <button type="button" class="btn btn-success" [routerLink]="['../schedule']">Edit</button>
             </div>
             <div *ngIf="userInfo.ShoppingList; else noSchedule">
-              <li class="list-group-item" *ngFor="let scheduleItem of userInfo.Schedule">{{scheduleItem.Meal}} ({{scheduleItem.Date | date: 'dd/MM/yyyy GGGG'}})</li>
+              <li class="list-group-item" *ngFor="let scheduleItem of userInfo.Schedule">{{scheduleItem.Meal}} ({{scheduleItem.Date | date: 'MM/dd/yyyy'}})</li>
             </div>
             <ng-template class="list-group" #noSchedule>
               <li class="list-group-item">No Schedule found. Click Edit to add items to Schedule</li>
