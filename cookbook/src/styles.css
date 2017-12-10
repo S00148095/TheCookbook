@@ -111,6 +111,11 @@ body
 {
     text-align: center;
 }
+.vertcentre {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); /* or try 50% */
+}
 .hidden
 {
     display:none;

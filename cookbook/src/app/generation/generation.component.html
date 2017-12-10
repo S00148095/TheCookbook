@@ -1,11 +1,19 @@
 <div class="middle" *ngIf="CheckVisibility()">
-  <button class="btn btn-primary" (click)="Decrement()">
-      <span class="glyphicon glyphicon-minus"></span>
-  </button>
-  <button class="btn btn-primary right" (click)="Increment()">
-      <span class="glyphicon glyphicon-plus"></span>
-  </button>
-  <p class="centred">Generated: {{numGenerated}} of {{numWanted}}</p>
+  <div class="row">
+    <div class="col-md-4 middle">
+      <button class="inline btn btn-primary right" (click)="Decrement()">
+        <span class="glyphicon glyphicon-minus"></span>
+      </button>
+    </div>
+    <div class="col-md-4 middle centred">
+      <p>Meals generated: {{numGenerated}} of {{numWanted}}</p>
+    </div>
+    <div class="col-md-4 middle">
+      <button class="inline btn btn-primary" (click)="Increment()">
+        <span class="glyphicon glyphicon-plus"></span>
+      </button>
+    </div>
+  </div>
   <app-recipe [recipe]=recipes[0]></app-recipe>
   <button class="btn btn-danger btn-lg huge" (click)="RemoveRecipe()">
     <span class="glyphicon glyphicon-remove"></span>
