@@ -53,6 +53,10 @@ export class ScheduleComponent implements AfterViewInit {
       this.SetEndDate();
     });
   }
+  Remove(i)
+  {
+    this.testSchedule.splice(i,1);
+  }
   toDate(date) {
     console.log(date);
     var datearray = date.split("-");
@@ -91,6 +95,13 @@ export class ScheduleComponent implements AfterViewInit {
   }
   Revert() {
     this.splitSchedule();
+  }
+  RevertFull()
+  {
+    this.service.GetUserInfo().subscribe(res => {
+      this.userInfo = res;
+      this.testSchedule = this.userInfo.Schedule;
+    });
   }
   CommitDrag(array) {
     this.userInfo.Schedule.forEach(element => {
