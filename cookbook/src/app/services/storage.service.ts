@@ -63,16 +63,20 @@ export class StorageService {
             this.httpOptions);
     }
 
-    MarkShoppingListItem() {
-
+    MarkShoppingListItem(shoppingList, index) {
+        return this.http.patch(this.firebaseURL + "/users/" + this.uid + "/ShoppingList/" + index + ".json",
+            shoppingList,
+            this.httpOptions);
     }
 
     EditShoppingListItem() {
 
     }
 
-    RemoveShoppingListItem() {
-
+    RemoveShoppingListItem(shoppingList): Observable<any> {
+        return this.http.put(this.firebaseURL + "/users/" + this.uid + "/ShoppingList.json",
+            shoppingList,
+            this.httpOptions);
     }
 
     sendGetRequestRandomRecipes(): Observable<any> {
@@ -94,7 +98,7 @@ export class StorageService {
     }
     sendPostRequestUpdateScheduleAndShoppingList(postData) {
         this.http.patch(this.firebaseURL + "/users/" + this.uid + ".json", postData).subscribe(res => {
-        this.router.navigate(['../schedule']);
+            this.router.navigate(['../schedule']);
         });
     }
 

@@ -1,22 +1,24 @@
 <div class="list-group" *ngIf="userInfo; else noShoppingList">
-  <li class="list-group-item clearfix" *ngFor="let shopping of userInfo.ShoppingList">{{shopping.Ingredient}} ({{shopping.Quantity}})
-    <button type="button" id="Remove" class="btn btn-danger icon" (click)="RemoveItem(shopping.Ingredient, shopping.Quantity)">
+  <div *ngFor="let shopping of userInfo.ShoppingList; let i = index">
+  <li [id]="i" class="list-group-item clearfix" >{{shopping.Ingredient}} ({{shopping.Quantity}})
+    <button type="button" id="Remove" class="btn btn-danger icon" (click)="RemoveItem(i)">
       <span class="glyphicon glyphicon-remove"></span>
     </button>
-    <button type="button" id="Remove" class="btn btn-primary icon" (click)="EditItem(shopping.Ingredient)">
+    <button type="button" id="Remove" class="btn btn-primary icon" (click)="EditItem(i)">
       <span class="glyphicon glyphicon-pencil"></span>
     </button>
-    <button type="button" id="Success" class="btn btn-success icon" (click)="MarkSuccess(shopping.Ingredient)">
+    <button type="button" id="Success" class="btn btn-success icon" (click)="MarkSuccess(i)">
       <span class="glyphicon glyphicon-ok"></span>
     </button>
   </li>
+</div>
   <li class="list-group-item clearfix">
     <input type="text" #NewItemName onclick="SeeHiddenDivs()" placeholder="Item Name">
     <input type="text" #NewQuantity onclick="SeeHiddenDivs()" placeholder="Quantity">
     <button type="button" id="NewRemove" class="btn btn-danger icon hidden">
       <span class="glyphicon glyphicon-remove"></span>
     </button>
-    <button type="button" id="NewSuccess" class="btn btn-success icon hidden" (click)="insertNewShoppingItem(NewItemName.value, NewQuantity.value)">
+    <button type="button" id="NewSuccess" class="btn btn-success icon hidden" (click)="InsertNewShoppingItem(NewItemName.value, NewQuantity.value)">
       <span class="glyphicon glyphicon-ok"></span>
     </button>
   </li>
