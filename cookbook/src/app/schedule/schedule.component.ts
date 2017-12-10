@@ -53,13 +53,19 @@ export class ScheduleComponent implements AfterViewInit {
       this.SetEndDate();
     });
   }
+  toDate(date) {
+    console.log(date);
+    var datearray = date.split("-");
+    console.log(datearray[1] + '-' + datearray[0] + '-' + datearray[2]);
+    return datearray[1] + '-' + datearray[0] + '-' + datearray[2];
+  }
   CheckVisibility() {
     if (this.userInfo != undefined && this.userInfo != null) return true;
     else return false;
   }
   Commit() {
     for (var i = 0; i < this.testSchedule.length; i++) {
-      if (Date.parse(this.testSchedule[i].Date)) {
+      if (Date.parse(this.toDate(this.testSchedule[i].Date))) {
         if (i == this.testSchedule.length - 1) {
           this.userInfo.Schedule = this.testSchedule;
           this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));
@@ -88,38 +94,38 @@ export class ScheduleComponent implements AfterViewInit {
   }
   CommitDrag(array) {
     this.userInfo.Schedule.forEach(element => {
-      if (element.Date>this.DateRangeEndString||element.Date<this.DateRangeStartString) {
+      if (element.Date > this.DateRangeEndString || element.Date < this.DateRangeStartString) {
         this.temp.push(element);
       }
     });
     this.userInfo.Schedule = [];
     this.userInfo.Schedule = this.temp;
     this.scheduleDay1.forEach(element => {
-      element.Date=this.DateRangeStartString;
+      element.Date = this.DateRangeStartString;
       this.userInfo.Schedule.push(element);
     });
     this.scheduleDay2.forEach(element => {
-      element.Date=this.Day2String;
+      element.Date = this.Day2String;
       this.userInfo.Schedule.push(element);
     });
     this.scheduleDay3.forEach(element => {
-      element.Date=this.Day3String;
+      element.Date = this.Day3String;
       this.userInfo.Schedule.push(element);
     });
     this.scheduleDay4.forEach(element => {
-      element.Date=this.Day4String;
+      element.Date = this.Day4String;
       this.userInfo.Schedule.push(element);
     });
     this.scheduleDay5.forEach(element => {
-      element.Date=this.Day5String;
+      element.Date = this.Day5String;
       this.userInfo.Schedule.push(element);
     });
     this.scheduleDay6.forEach(element => {
-      element.Date=this.Day6String;
+      element.Date = this.Day6String;
       this.userInfo.Schedule.push(element);
     });
     this.scheduleDay7.forEach(element => {
-      element.Date=this.DateRangeEndString;
+      element.Date = this.DateRangeEndString;
       this.userInfo.Schedule.push(element);
     });
     this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));

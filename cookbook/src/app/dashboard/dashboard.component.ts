@@ -16,7 +16,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(private service: StorageService, private router: Router) {
    }
-
   getUserInfo()
   {
     this.service.GetUserInfo().subscribe( res => { 
