@@ -23,14 +23,13 @@ export class StorageService {
     }
 
     GetUserInfo(): Observable<any> {
-        return this.http.get(this.firebaseURL + "/users/" + this.uid + ".json")
+        return this.http.get(this.firebaseURL + "users/" + this.uid + ".json")
     }
-    RemoveShoppingListItem() {
 
-    }
     updateTitle(value) {
         this.title.setTitle(value);
     }
+
     LogOut() {
         this.uid = "";
         this.userInfo = null;
@@ -45,6 +44,7 @@ export class StorageService {
             }
         });
     }
+
     sendPostRequestNewUser(postData: any, user: string) {
         this.http.patch(this.firebaseURL + "users/" + user + ".json", postData).subscribe(res => {
             console.log(res);
@@ -63,16 +63,30 @@ export class StorageService {
             this.httpOptions);
     }
 
+    MarkShoppingListItem() {
+
+    }
+
+    EditShoppingListItem() {
+
+    }
+
+    RemoveShoppingListItem() {
+
+    }
+
     sendGetRequestRandomRecipes(): Observable<any> {
         return this.http.get(this.url + "recipes/" + "random?limitLicense=true&number=10", {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }
+
     sendGetRequestRecipeByID(ID): Observable<any> {
         return this.http.get(this.url + "recipes/" + ID + "/information?includeNutrition=false", {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }
+
     sendGetRequestAutocomplete(value): Observable<any> {
         return this.http.get(this.url + "food/ingredients/autocomplete?metaInformation=false&number=5&query=" + value, {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
