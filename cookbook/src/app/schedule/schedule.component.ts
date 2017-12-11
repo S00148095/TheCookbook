@@ -7,6 +7,7 @@ import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { ToastsManager } from 'ng2-toastr';
 import { AuthService } from '../services/auth.service';
 import 'script.js';
+import { DragulaService } from 'ng2-dragula';
 
 declare var myExtObject: any;
 
@@ -41,9 +42,11 @@ export class ScheduleComponent implements AfterViewInit {
   day4: Date = new Date;
   day5: Date = new Date;
   day6: Date = new Date;
+  hasDropped:boolean;
 
-  constructor(public authService: AuthService, private service: StorageService, private datePipe: DatePipe, public toastr: ToastsManager, vcr: ViewContainerRef) {
+  constructor(public authService: AuthService,private dragulaService:DragulaService, private service: StorageService, private datePipe: DatePipe, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
+    this.hasDropped=false;
     this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
       this.testSchedule = this.userInfo.Schedule;
@@ -51,11 +54,17 @@ export class ScheduleComponent implements AfterViewInit {
       this.DateRangeStart = new Date;
       this.DateRangeEnd = new Date;
       this.SetEndDate();
-    });
+    });    
+  dragulaService.drop.subscribe((value:any) => {
+    this.hasDropped=true;
+  });
   }
   Remove(i)
   {
     this.testSchedule.splice(i,1);
+  }
+  showSuccess() {
+    this.toastr.success('Saved succesfully', 'Success!');
   }
   toDate(date) {
     console.log(date);
@@ -73,6 +82,7 @@ export class ScheduleComponent implements AfterViewInit {
         if (i == this.testSchedule.length - 1) {
           this.userInfo.Schedule = this.testSchedule;
           this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));
+          this.showSuccess();
           this.splitSchedule();
           myExtObject.Expand();
         }
@@ -95,6 +105,7 @@ export class ScheduleComponent implements AfterViewInit {
   }
   Revert() {
     this.splitSchedule();
+    this.hasDropped=false;
   }
   RevertFull()
   {
@@ -140,6 +151,8 @@ export class ScheduleComponent implements AfterViewInit {
       this.userInfo.Schedule.push(element);
     });
     this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));
+    this.showSuccess();
+    this.hasDropped=false;
   }
   splitSchedule() {
     this.scheduleDay1 = [];

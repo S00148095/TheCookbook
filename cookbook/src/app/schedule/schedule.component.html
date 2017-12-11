@@ -15,7 +15,7 @@
 				</tr>
 			</table>
 			<div class="btn-group btn-group-justified" role="group">
-				<a type="button" class="btn btn-danger"(click)="RevertFull()" onclick="Expand()">Cancel</a>
+				<a type="button" class="btn btn-danger" (click)="RevertFull()" onclick="Expand()">Cancel</a>
 				<a type="button" class="btn btn-success" (click)="Commit()">Save</a>
 			</div>
 		</div>
@@ -92,7 +92,7 @@
 					</td>
 				</tr>
 			</table>
-			<div class="btn-group btn-group-justified" role="group">
+			<div class="btn-group btn-group-justified" role="group" *ngIf="hasDropped">
 				<a type="button" class="btn btn-danger" (click)="Revert()">Cancel</a>
 				<a type="button" class="btn btn-success" (click)="CommitDrag()">Save</a>
 			</div>

@@ -1,4 +1,6 @@
 <div *ngIf="CheckVisibility()">
+    <h1>Welcome to The Cookbook!</h1>
+    <h2>Browse recipes below or sign in to generate a set of meals!</h2>
     <app-recipe *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe>
     <a type="button" class="btn btn-block btn-success" (click)="GetRecipes()" *ngIf="showButton">More</a>
     <div *ngIf="!showButton">
