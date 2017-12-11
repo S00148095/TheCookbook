@@ -13,6 +13,7 @@ export class ListingComponent implements OnInit {
   public shoppingList: Object;
   public boolArray: boolean[] = [];
   public index: number;
+  public previousIndex: number;
   public itemName: string;
   public quantity: string;
   constructor(private service: StorageService) { }
@@ -65,11 +66,15 @@ export class ListingComponent implements OnInit {
   }
 
   EditItem(index: number, itemName: string, quantity: string) {
-    this.boolArray[index] = false;
-    this.index = index;
-    this.itemName = itemName;
-    this.quantity = quantity;
-    console.log(index, this.boolArray[index]);
+    if (this.previousIndex !== null) {
+      this.boolArray[this.previousIndex] = true;
+      this.boolArray[index] = false;
+      this.index = index;
+      this.itemName = itemName;
+      this.quantity = quantity;
+      console.log(index, this.boolArray[index]);
+      this.previousIndex = index;
+    }
   }
 
   RemoveItem(index: number) {

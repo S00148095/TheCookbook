@@ -1,16 +1,29 @@
-<div class="padded header">
-  <div class="row">
-    <div class="col-xs-6 pointer">
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+        aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
       <h1 [routerLink]="['../home']">The Cookbook</h1>
     </div>
-    <div class="col-xs-6" *ngIf="CheckLogin()">
-      <button type="button" [routerLink]="['../login']" class="btn right btn-primary">Log In/Sign Up</button>
-    </div>
-    <div class="col-xs-6" *ngIf="CheckLogOut()">
-      <div class="btn-group btn-group right" role="group">
-        <button type="button" (click)="Logout()" class="btn btn-primary">Log Out</button>
-        <button type="button" [routerLink]="['../dashboard']" class="btn btn-primary">Dashboard</button>
-      </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <div *ngIf="CheckLogin()">
+          <li>
+            <button type="button" [routerLink]="['../login']" class="btn right btn-primary">Log In/Sign Up</button>
+          </li>
+        </div>
+        <div *ngIf="CheckLogOut()">
+          <li>
+            <button type="button" (click)="Logout()" class="btn btn-primary">Log Out</button>
+            <button type="button" [routerLink]="['../dashboard']" class="btn btn-primary">Dashboard</button>
+          </li>
+        </div>
+      </ul>
     </div>
   </div>
-</div>
+</nav>
