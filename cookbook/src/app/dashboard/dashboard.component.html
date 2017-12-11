@@ -1,6 +1,6 @@
 <div class="container" *ngIf="userInfo">
   <div class="row">
-    <div class="main col-md-9">
+    <div class="col-md-9">
       <div class="row">
         <div class="text-center">
           <h1>Welcome {{ userInfo.UserName }}</h1>
@@ -31,16 +31,14 @@
     </div>
 
     <div class="col-md-3">
-      <div class="sidebar-nav-fixed pull-right affix">
+      <div class="sidebar-nav-fixed pull-right">
         <div class="pull-right">
           <button type="button" class="btn btn-success" [routerLink]="['../schedule']">Edit</button>
         </div>
         <div class="well">
           <ul class="list-group">
-            <li class="nav-header">Schedule</li>
-            <div class="pull-right">
-              <button type="button" class="btn btn-success" [routerLink]="['../schedule']">Edit</button>
-            </div>
+            <h3 class="nav-header">Schedule</h3>
+            <button type="button" class="btn btn-success pull-right" [routerLink]="['../schedule']">Edit</button>
             <div *ngIf="userInfo.ShoppingList; else noSchedule">
               <li class="list-group-item" *ngFor="let scheduleItem of userInfo.Schedule" (click)="MoveToDetails(scheduleItem)">{{scheduleItem.Meal}} ({{scheduleItem.Date}})</li>
             </div>
