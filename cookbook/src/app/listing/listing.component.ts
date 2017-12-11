@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { User } from '../User';
 import { StorageService } from '../services/storage.service';
+import { AuthService } from '../services/auth.service';
+import { ToastsManager } from 'ng2-toastr';
 
 @Component({
   selector: 'app-listing',
@@ -16,7 +18,10 @@ export class ListingComponent implements OnInit {
   public previousIndex: number;
   public itemName: string;
   public quantity: string;
-  constructor(private service: StorageService) { }
+  constructor(private service: StorageService,private authservice:AuthService, public toastr: ToastsManager, vcr: ViewContainerRef)
+  {
+    this.toastr.setRootViewContainerRef(vcr);
+   }
 
   ngOnInit() {
     this.service.updateTitle("Shopping List- The Cookbook");
@@ -47,6 +52,7 @@ export class ListingComponent implements OnInit {
     this.service.UpdateShoppingList(this.shoppingList).subscribe(res => {
       this.shoppingList = res;
       this.RefreshData();
+      this.authservice.showSuccess("Item added");
     });
   }
 
@@ -83,6 +89,7 @@ export class ListingComponent implements OnInit {
       console.log(JSON.stringify(this.userInfo.ShoppingList));
       this.service.RemoveShoppingListItem(JSON.stringify(this.userInfo.ShoppingList)).subscribe(res => {
         this.shoppingList = res;
+        this.authservice.showSuccess("Successfully removed");
       });;
     }
   }
@@ -106,6 +113,7 @@ export class ListingComponent implements OnInit {
     this.service.EditShoppingListItem(this.shoppingList).subscribe(res => {
       this.shoppingList = res;
       this.RefreshData();
+      this.authservice.showSuccess("Item edited succesfully");
     });
   }
 }
