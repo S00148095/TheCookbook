@@ -116,4 +116,13 @@ export class ListingComponent implements OnInit {
       this.authservice.showSuccess("Item edited succesfully");
     });
   }
+
+  CheckedMarked(done: string) {
+    if (done === "Yes") {
+    return "line-through";
+    }
+    else {
+      return "";
+    }
+  }
 }

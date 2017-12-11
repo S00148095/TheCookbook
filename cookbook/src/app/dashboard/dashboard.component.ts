@@ -13,22 +13,33 @@ import { Meal } from '../Meal';
 export class DashboardComponent implements OnInit {
   public userInfo: User;
   public uid: string;
+  public filteredDates: Meal[];
 
   constructor(private service: StorageService, private router: Router) {
-   }
-  getUserInfo()
-  {
-    this.service.GetUserInfo().subscribe( res => { 
+  }
+
+  GetUserInfo() {
+    this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
-      console.log(this.userInfo);
+      this.filteredDates = this.userInfo.Schedule.sort(function (a, b) {
+        if (a.Date < b.Date) {
+          return -1;
+        } else if (a.Date > b.Date) {
+          return 1;
+        } else {
+          return 0;
+        }
       });
+      console.log(this.userInfo);
+    });
   }
-  MoveToDetails(meal:Meal)
-  {
-    this.router.navigate(["../details"],{ queryParams: { id: meal.ID } });
+
+  MoveToDetails(meal: Meal) {
+    this.router.navigate(["../details"], { queryParams: { id: meal.ID } });
   }
+
   ngOnInit() {
-    this.getUserInfo();
+    this.GetUserInfo();
     this.service.updateTitle("Dashboard - The Cookbook");
   }
 }
