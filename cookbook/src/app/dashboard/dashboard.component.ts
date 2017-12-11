@@ -30,7 +30,6 @@ export class DashboardComponent implements OnInit {
           return 0;
         }
       });
-      console.log(this.userInfo);
     });
   }
 

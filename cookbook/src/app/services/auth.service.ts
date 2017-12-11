@@ -20,7 +20,6 @@ export class AuthService {
   canActivate(): Observable<boolean> {
     return this.firebaseAuth.authState.map(authState => {
       if (!authState) this.router.navigate(['/login']);
-      console.log('activate?', !!authState);
       return !!authState;
     });
   }
@@ -39,7 +38,6 @@ export class AuthService {
       .auth
       .createUserWithEmailAndPassword(email, password)
       .then(value => {
-        console.log('Successfully registered!');
         this.afa.authState.subscribe((resp) => {
           if (resp != null) {
             if (resp.uid) {
@@ -57,7 +55,6 @@ export class AuthService {
       .auth
       .signInWithEmailAndPassword(email, password)
       .then(value => {
-        console.log('Succesfully logged in!');
         this.router.navigate(['/dashboard']);
       })
       .catch(err => {

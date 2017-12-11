@@ -31,10 +31,8 @@ export class ListingComponent implements OnInit {
   private RefreshData() {
     this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
-      console.log(JSON.stringify(this.userInfo));
       for (var i = 0; i < this.userInfo.ShoppingList.length; i++) {
         this.boolArray[i] = true;
-        (console.log(this.boolArray[i]));
       }
     });
   }
@@ -78,7 +76,6 @@ export class ListingComponent implements OnInit {
       this.index = index;
       this.itemName = itemName;
       this.quantity = quantity;
-      console.log(index, this.boolArray[index]);
       this.previousIndex = index;
     }
   }
@@ -86,7 +83,6 @@ export class ListingComponent implements OnInit {
   RemoveItem(index: number) {
     if (index !== -1) {
       this.userInfo.ShoppingList.splice(index, 1);
-      console.log(JSON.stringify(this.userInfo.ShoppingList));
       this.service.RemoveShoppingListItem(JSON.stringify(this.userInfo.ShoppingList)).subscribe(res => {
         this.shoppingList = res;
         this.authservice.showSuccess("Successfully removed");
@@ -97,7 +93,6 @@ export class ListingComponent implements OnInit {
   Cancel() {
     for (var i = 0; i < this.userInfo.ShoppingList.length; i++) {
       this.boolArray[i] = true;
-      console.log(this.boolArray[i]);
     }
   }
 

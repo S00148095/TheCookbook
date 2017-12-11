@@ -64,9 +64,7 @@ export class ScheduleComponent implements AfterViewInit {
     this.testSchedule.splice(i,1);
   }
   toDate(date) {
-    console.log(date);
     var datearray = date.split("-");
-    console.log(datearray[1] + '-' + datearray[0] + '-' + datearray[2]);
     return datearray[1] + '-' + datearray[0] + '-' + datearray[2];
   }
   CheckVisibility() {
