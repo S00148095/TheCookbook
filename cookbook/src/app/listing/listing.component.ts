@@ -108,4 +108,13 @@ export class ListingComponent implements OnInit {
       this.RefreshData();
     });
   }
+
+  CheckedMarked(done: string) {
+    if (done === "Yes") {
+    return "line-through";
+    }
+    else {
+      return "";
+    }
+  }
 }
