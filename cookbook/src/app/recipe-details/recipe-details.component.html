@@ -1,45 +1,35 @@
-<div *ngIf="CheckVisibility()">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="row">
-        <div class="col">
-          <h2>{{recipe.title}}</h2>
-          <img *ngIf="recipe.vegetarian" class="tinyicon" src="https://i.imgur.com/U40fpGR.png" title="Vegetarian">
-          <img *ngIf="recipe.vegan" class="tinyicon" src="https://i.imgur.com/6vahoZN.png" title="Vegan">
-          <img *ngIf="recipe.dairyFree" class="tinyicon" src="https://i.imgur.com/9wsbQhH.png" title="Dairy Free">
-          <img *ngIf="recipe.glutenFree" class="tinyicon" src="https://i.imgur.com/ppyauzE.png" title="Gluten Free">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <p>Time: {{recipe.readyInMinutes}} minutes</p>
-        </div>
-        <div class="col">
-            <p>Serves: {{recipe.servings}}</p>
-          </div>
-        <div class="col">
-          <h3>Ingredients</h3>
-          <li *ngFor="let ingredient of recipe.extendedIngredients">{{ingredient.name}} - {{ingredient.amount}} {{ingredient.unitLong}}</li>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <img [src]="recipe.image" class="img-thumbnail">
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-    </div>
-  </div>
-  <div class="col">
-    <h3>Instructions</h3>
-    <li *ngFor="let step of recipe.analyzedInstructions[0].steps">{{step.step}}</li>
-  </div>
-</div>
 <div class="middle centred" *ngIf="!CheckVisibility()">
   <div class="spinner">
-      <div class="cube1"></div>
-      <div class="cube2"></div>
+    <div class="cube1"></div>
+    <div class="cube2"></div>
+  </div>
+</div>
+<div class="container-fluid" *ngIf="CheckVisibility()">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>{{recipe.title}}</h2>
+      <div>
+        <img *ngIf="recipe.vegetarian" class="tinyicon" src="https://i.imgur.com/U40fpGR.png" title="Vegetarian">
+        <img *ngIf="recipe.vegan" class="tinyicon" src="https://i.imgur.com/6vahoZN.png" title="Vegan">
+        <img *ngIf="recipe.dairyFree" class="tinyicon" src="https://i.imgur.com/9wsbQhH.png" title="Dairy Free">
+        <img *ngIf="recipe.glutenFree" class="tinyicon" src="https://i.imgur.com/ppyauzE.png" title="Gluten Free">
+      </div>
+      <br/>
+      <div class="col-md-6">
+        <p>Time: {{recipe.readyInMinutes}} minutes</p>
+        <p>Serves: {{recipe.servings}}</p>
+        <br/>
+        <h3>Ingredients</h3>
+        <li *ngFor="let ingredient of recipe.extendedIngredients">{{ingredient.name}} - {{ingredient.amount}} {{ingredient.unitLong}}</li>
+        <br/>
+      </div>
+      <div class="col-md-6">
+        <img [src]="recipe.image" class="img-thumbnail">
+      </div>
+    </div>
+    <div class="col">
+      <h3>Instructions</h3>
+      <li *ngFor="let step of recipe.analyzedInstructions[0].steps">{{step.step}}</li>
+    </div>
   </div>
 </div>

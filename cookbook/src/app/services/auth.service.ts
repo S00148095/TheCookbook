@@ -72,4 +72,7 @@ export class AuthService {
   ShowWarning(output: string) {
     this.toastr.warning(output);
   }
+  showSuccess(output:string) {
+    this.toastr.success(output);
+  }
 }

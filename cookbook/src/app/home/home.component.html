@@ -1,6 +1,14 @@
 <div *ngIf="CheckVisibility()">
-<app-recipe *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe>
-<a type="button" class="btn btn-block btn-success" (click)="GetRecipes()" *ngIf="showButton">More</a>
+    <h1>Welcome to The Cookbook!</h1>
+    <h2>Browse recipes below or sign in to generate a set of meals!</h2>
+    <app-recipe *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe>
+    <a type="button" class="btn btn-block btn-success" (click)="GetRecipes()" *ngIf="showButton">More</a>
+    <div *ngIf="!showButton">
+        <div class="spinner">
+            <div class="cube1"></div>
+            <div class="cube2"></div>
+        </div>
+    </div>
 </div>
 <div class="middle centred" *ngIf="!CheckVisibility()">
     <div class="spinner">
