@@ -63,9 +63,6 @@ export class ScheduleComponent implements AfterViewInit {
   {
     this.testSchedule.splice(i,1);
   }
-  showSuccess() {
-    this.toastr.success('Saved succesfully', 'Success!');
-  }
   toDate(date) {
     console.log(date);
     var datearray = date.split("-");
@@ -82,7 +79,7 @@ export class ScheduleComponent implements AfterViewInit {
         if (i == this.testSchedule.length - 1) {
           this.userInfo.Schedule = this.testSchedule;
           this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));
-          this.showSuccess();
+          this.authService.showSuccess("Saved successfully");
           this.splitSchedule();
           myExtObject.Expand();
         }
@@ -151,7 +148,7 @@ export class ScheduleComponent implements AfterViewInit {
       this.userInfo.Schedule.push(element);
     });
     this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));
-    this.showSuccess();
+    this.authService.showSuccess("Saved successfully");
     this.hasDropped=false;
   }
   splitSchedule() {

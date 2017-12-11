@@ -23,12 +23,14 @@
   </button>
 </div>
 <div id="myModal" class="modal">
-  <div class="modal-content">
-    <div class="form-group">
+  <div class="modal-content centred">
+    <div class="form-group vertcentre">
       <h1>How many days would you like to plan for?</h1>
+      <br/>
       <input type="number" class="form-control" id="numDays" [(ngModel)]="numWanted" />
+      <br/>
+      <button type="submit" class="btn btn-block btn-primary" onclick="closeModal()">OK</button>
     </div>
-    <button type="submit" class="btn btn-primary" onclick="closeModal()">OK</button>
   </div>
 </div>
 <div class="middle centred" *ngIf="!CheckVisibility()">
