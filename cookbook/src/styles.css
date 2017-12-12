@@ -310,3 +310,48 @@ body {
 .table.table-bordered.table-hover {
     margin-bottom: 0px;
 }
+
+@media only screen and (max-width: 800px) {
+    .recipe {
+        height:10em;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .recipe {
+        height:5em;
+    }
+    h2
+    {
+        font-size: 12px!important;
+        margin:1px!important;
+    }
+    p
+    {
+        font-size: 10px!important;
+        margin:1px!important;
+    }
+    .tinyicon
+    {
+        display:none;
+    }
+}
+@media (max-width: 768px) {
+    .btn {
+      font-size:11px!important;
+      padding:4px 6px!important;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .btn {
+      font-size:12px!important;
+      padding:6px 12px!important;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .btn {
+      font-size:14px!important;
+      padding:8px 12px!important;
+    }
+  }
