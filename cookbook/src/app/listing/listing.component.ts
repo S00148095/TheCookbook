@@ -18,10 +18,9 @@ export class ListingComponent implements OnInit {
   public previousIndex: number;
   public itemName: string;
   public quantity: string;
-  constructor(private service: StorageService,private authservice:AuthService, public toastr: ToastsManager, vcr: ViewContainerRef)
-  {
+  constructor(private service: StorageService, private authservice: AuthService, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
-   }
+  }
 
   ngOnInit() {
     this.service.updateTitle("Shopping List- The Cookbook");
@@ -31,16 +30,21 @@ export class ListingComponent implements OnInit {
   private RefreshData() {
     this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
-      console.log(JSON.stringify(this.userInfo));
-      for (var i = 0; i < this.userInfo.ShoppingList.length; i++) {
-        this.boolArray[i] = true;
-        (console.log(this.boolArray[i]));
+      if (this.userInfo.ShoppingList !== undefined) {
+        for (var i = 0; i < this.userInfo.ShoppingList.length; i++) {
+          this.boolArray[i] = true;
+        }
       }
     });
   }
 
   InsertNewShoppingItem(itemName: string, quantity: string) {
-    this.shoppingListCount = (this.userInfo.ShoppingList.length).toString();
+    if (this.userInfo.ShoppingList != null) {
+      this.shoppingListCount = (this.userInfo.ShoppingList.length).toString();
+    }
+    else {
+      this.shoppingListCount = "0";
+    }
     this.shoppingList = {
       [this.shoppingListCount]: {
         Ingredient: itemName,
@@ -89,7 +93,7 @@ export class ListingComponent implements OnInit {
       console.log(JSON.stringify(this.userInfo.ShoppingList));
       this.service.RemoveShoppingListItem(JSON.stringify(this.userInfo.ShoppingList)).subscribe(res => {
         this.shoppingList = res;
-        this.authservice.showSuccess("Successfully removed");
+        this.authservice.showDanger("Successfully removed");
       });;
     }
   }
@@ -113,13 +117,13 @@ export class ListingComponent implements OnInit {
     this.service.EditShoppingListItem(this.shoppingList).subscribe(res => {
       this.shoppingList = res;
       this.RefreshData();
-      this.authservice.showSuccess("Item edited succesfully");
+      this.authservice.showInfo("Item edited succesfully");
     });
   }
 
   CheckedMarked(done: string) {
     if (done === "Yes") {
-    return "line-through";
+      return "line-through";
     }
     else {
       return "";

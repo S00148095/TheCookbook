@@ -42,11 +42,11 @@ export class ScheduleComponent implements AfterViewInit {
   day4: Date = new Date;
   day5: Date = new Date;
   day6: Date = new Date;
-  hasDropped:boolean;
+  hasDropped: boolean;
 
-  constructor(public authService: AuthService,private dragulaService:DragulaService, private service: StorageService, private datePipe: DatePipe, public toastr: ToastsManager, vcr: ViewContainerRef) {
+  constructor(public authService: AuthService, private dragulaService: DragulaService, private service: StorageService, private datePipe: DatePipe, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
-    this.hasDropped=false;
+    this.hasDropped = false;
     this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
       this.testSchedule = this.userInfo.Schedule;
@@ -54,14 +54,13 @@ export class ScheduleComponent implements AfterViewInit {
       this.DateRangeStart = new Date;
       this.DateRangeEnd = new Date;
       this.SetEndDate();
-    });    
-  dragulaService.drop.subscribe((value:any) => {
-    this.hasDropped=true;
-  });
+    });
+    dragulaService.drop.subscribe((value: any) => {
+      this.hasDropped = true;
+    });
   }
-  Remove(i)
-  {
-    this.testSchedule.splice(i,1);
+  Remove(i) {
+    this.testSchedule.splice(i, 1);
   }
   toDate(date) {
     console.log(date);
@@ -102,10 +101,9 @@ export class ScheduleComponent implements AfterViewInit {
   }
   Revert() {
     this.splitSchedule();
-    this.hasDropped=false;
+    this.hasDropped = false;
   }
-  RevertFull()
-  {
+  RevertFull() {
     this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
       this.testSchedule = this.userInfo.Schedule;
@@ -149,7 +147,7 @@ export class ScheduleComponent implements AfterViewInit {
     });
     this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));
     this.authService.showSuccess("Saved successfully");
-    this.hasDropped=false;
+    this.hasDropped = false;
   }
   splitSchedule() {
     this.scheduleDay1 = [];
