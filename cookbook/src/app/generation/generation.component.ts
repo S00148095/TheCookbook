@@ -28,6 +28,18 @@ export class GenerationComponent {
     this.numGenerated = 0;
     this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
+      if (this.userInfo.ShoppingList==undefined)
+      {
+        this.userInfo.ShoppingList=[];
+      }
+      if (this.userInfo.Schedule==undefined)
+      {
+        this.userInfo.Schedule=[];
+      }
+      if (this.userInfo.BannedFood==undefined)
+      {
+        this.userInfo.BannedFood=[];
+      }
     });
   }
   OpenModal() {
