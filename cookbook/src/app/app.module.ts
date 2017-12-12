@@ -43,8 +43,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthService] },
   { path: 'schedule', component: ScheduleComponent, canActivate: [AuthService] },
   { path: 'details', component: RecipeDetailsComponent },
-  { path: 'login', component: LoginComponent },
-  { path: '**', redirectTo: 'home' }
+  { path: 'login', component: LoginComponent},
+  { path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({
