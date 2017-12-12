@@ -21,12 +21,6 @@ export class StorageService {
     constructor(private db: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient, private router: Router, private title: Title) {
         this.GetUID();
     }
-    canActivate(): Observable<boolean> {
-        return this.afa.authState.map(authState => {
-          if (authState) this.router.navigate(['/dashboard']);
-          return !!authState;
-        });
-      }
     GetUserInfo(): Observable<any> {
         return this.http.get(this.firebaseURL + "users/" + this.uid + ".json")
     }
