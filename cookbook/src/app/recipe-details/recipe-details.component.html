@@ -7,7 +7,7 @@
 <div class="container-fluid" *ngIf="CheckVisibility()">
   <div class="row">
     <div class="col-md-12">
-      <h2 *ngIf="recipe.title">{{recipe.title}}</h2>
+      <h2 class="recipe-heading" *ngIf="recipe.title">{{recipe.title}}</h2>
       <div>
         <img *ngIf="recipe.vegetarian" class="tinyicon" src="https://i.imgur.com/U40fpGR.png" title="Vegetarian">
         <img *ngIf="recipe.vegan" class="tinyicon" src="https://i.imgur.com/6vahoZN.png" title="Vegan">
