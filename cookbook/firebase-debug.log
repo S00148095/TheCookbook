@@ -1,0 +1,32 @@
+[debug] [2017-12-11T19:52:56.262Z] ----------------------------------------------------------------------
+[debug] [2017-12-11T19:52:56.267Z] Command:       C:\Program Files (x86)\nodejs\node.exe C:\Users\liaml\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve --only hosting
+[debug] [2017-12-11T19:52:56.268Z] CLI Version:   3.16.0
+[debug] [2017-12-11T19:52:56.268Z] Platform:      win32
+[debug] [2017-12-11T19:52:56.268Z] Node Version:  v9.2.0
+[debug] [2017-12-11T19:52:56.269Z] Time:          Mon Dec 11 2017 19:52:56 GMT+0000 (GMT Standard Time)
+[debug] [2017-12-11T19:52:56.270Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-11T19:52:56.296Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-11T19:52:56.297Z] > authorizing via signed-in user
+[debug] [2017-12-11T19:52:56.301Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/the-cookbook  
+  
+ Mon Dec 11 2017 19:52:56 GMT+0000 (GMT Standard Time)
+[debug] [2017-12-11T19:52:57.098Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-11T19:52:57.100Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/the-cookbook/tokens  
+  
+ Mon Dec 11 2017 19:52:57 GMT+0000 (GMT Standard Time)
+[debug] [2017-12-11T19:53:00.752Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\liaml\Documents\GitHub\TheCookbook\cookbook'...
+[info] 
+[debug] [2017-12-11T19:53:00.765Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/the-cookbook  
+  
+ Mon Dec 11 2017 19:53:00 GMT+0000 (GMT Standard Time)
+[debug] [2017-12-11T19:53:01.449Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-11T19:53:01.453Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/1043942864683/clients/_:getWebAppConfig  
+  
+ Mon Dec 11 2017 19:53:01 GMT+0000 (GMT Standard Time)
+[debug] [2017-12-11T19:53:01.850Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: dist
+[info] +  hosting: Local server: http://localhost:5000
+
