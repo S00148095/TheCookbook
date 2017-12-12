@@ -33,7 +33,7 @@ import { AuthService } from './services/auth.service';
 
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
-import { DragulaModule } from  'ng2-dragula';
+import { DragulaModule } from 'ng2-dragula';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -43,8 +43,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthService] },
   { path: 'schedule', component: ScheduleComponent, canActivate: [AuthService] },
   { path: 'details', component: RecipeDetailsComponent },
-  { path: 'login', component: LoginComponent , canActivate: [StorageService]},
-  { path: '**', redirectTo: 'home'}
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: 'home' }
 ];
 
 @NgModule({
