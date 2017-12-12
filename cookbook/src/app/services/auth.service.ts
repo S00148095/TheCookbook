@@ -41,7 +41,7 @@ export class AuthService {
         this.afa.authState.subscribe((resp) => {
           if (resp != null) {
             if (resp.uid) {
-              this.service.sendPostRequestNewUser(this.populatePost(resp.uid,bannedIngredients,Username), resp.uid);
+              this.service.sendPostRequestNewUser(this.populatePost(resp.uid, bannedIngredients, Username), resp.uid);
             }
           }
         });
@@ -69,7 +69,13 @@ export class AuthService {
   ShowWarning(output: string) {
     this.toastr.warning(output);
   }
-  showSuccess(output:string) {
+  showSuccess(output: string) {
     this.toastr.success(output);
+  }
+  showDanger(output: string) {
+    this.toastr.error(output);
+  }
+  showInfo(output: string) {
+    this.toastr.info(output);
   }
 }

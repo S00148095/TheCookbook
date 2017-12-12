@@ -42,11 +42,11 @@ export class ScheduleComponent implements AfterViewInit {
   day4: Date = new Date;
   day5: Date = new Date;
   day6: Date = new Date;
-  hasDropped:boolean;
+  hasDropped: boolean;
 
-  constructor(public authService: AuthService,private dragulaService:DragulaService, private service: StorageService, private datePipe: DatePipe, public toastr: ToastsManager, vcr: ViewContainerRef) {
+  constructor(public authService: AuthService, private dragulaService: DragulaService, private service: StorageService, private datePipe: DatePipe, public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
-    this.hasDropped=false;
+    this.hasDropped = false;
     this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
       this.testSchedule = this.userInfo.Schedule;
@@ -54,14 +54,13 @@ export class ScheduleComponent implements AfterViewInit {
       this.DateRangeStart = new Date;
       this.DateRangeEnd = new Date;
       this.SetEndDate();
-    });    
-  dragulaService.drop.subscribe((value:any) => {
-    this.hasDropped=true;
-  });
+    });
+    dragulaService.drop.subscribe((value: any) => {
+      this.hasDropped = true;
+    });
   }
-  Remove(i)
-  {
-    this.testSchedule.splice(i,1);
+  Remove(i) {
+    this.testSchedule.splice(i, 1);
   }
   toDate(date) {
     var datearray = date.split("-");
@@ -72,25 +71,30 @@ export class ScheduleComponent implements AfterViewInit {
     else return false;
   }
   Commit() {
-    for (var i = 0; i < this.testSchedule.length; i++) {
-      if (Date.parse(this.toDate(this.testSchedule[i].Date))) {
-        if (i == this.testSchedule.length - 1) {
-          this.userInfo.Schedule = this.testSchedule;
-          this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));
-          this.authService.showSuccess("Saved successfully");
-          this.splitSchedule();
-          myExtObject.Expand();
+    if (this.testSchedule!=undefined) {
+      for (var i = 0; i < this.testSchedule.length; i++) {
+        if (Date.parse(this.toDate(this.testSchedule[i].Date))) {
+          if (i == this.testSchedule.length - 1) {
+            this.userInfo.Schedule = this.testSchedule;
+            this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));
+            this.authService.showSuccess("Saved successfully");
+            this.splitSchedule();
+            myExtObject.Expand();
+          }
+        }
+        else {
+          this.testSchedule = [];
+          this.service.GetUserInfo().subscribe(res => {
+            this.userInfo = res;
+            this.testSchedule = this.userInfo.Schedule;
+          });
+          this.authService.ShowWarning("Invalid date");
+          break;
         }
       }
-      else {
-        this.testSchedule = [];
-        this.service.GetUserInfo().subscribe(res => {
-          this.userInfo = res;
-          this.testSchedule = this.userInfo.Schedule;
-        });
-        this.authService.ShowWarning("Invalid date");
-        break;
-      }
+    }
+    else{
+      myExtObject.Expand();
     }
   }
   formatPost(array) {
@@ -100,10 +104,9 @@ export class ScheduleComponent implements AfterViewInit {
   }
   Revert() {
     this.splitSchedule();
-    this.hasDropped=false;
+    this.hasDropped = false;
   }
-  RevertFull()
-  {
+  RevertFull() {
     this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
       this.testSchedule = this.userInfo.Schedule;
@@ -147,7 +150,7 @@ export class ScheduleComponent implements AfterViewInit {
     });
     this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));
     this.authService.showSuccess("Saved successfully");
-    this.hasDropped=false;
+    this.hasDropped = false;
   }
   splitSchedule() {
     this.scheduleDay1 = [];
@@ -196,7 +199,9 @@ export class ScheduleComponent implements AfterViewInit {
     this.Day5String = this.datePipe.transform(this.day5, 'dd-MM-yyyy');
     this.day6 = this.addDays(this.DateRangeStart, 5);
     this.Day6String = this.datePipe.transform(this.day6, 'dd-MM-yyyy');
-    this.splitSchedule();
+    if (this.userInfo.Schedule != undefined) {
+      this.splitSchedule();
+    }
   }
   Previous() {
     this.DateRangeStart = this.addDays(this.DateRangeStart, -7);

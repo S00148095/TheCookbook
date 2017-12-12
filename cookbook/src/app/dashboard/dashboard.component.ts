@@ -21,15 +21,17 @@ export class DashboardComponent implements OnInit {
   GetUserInfo() {
     this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
-      this.filteredDates = this.userInfo.Schedule.sort(function (a, b) {
-        if (a.Date < b.Date) {
-          return -1;
-        } else if (a.Date > b.Date) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
+      if (this.userInfo.Schedule != null || this.userInfo.Schedule != undefined) {
+        this.filteredDates = this.userInfo.Schedule.sort(function (a, b) {
+          if (a.Date < b.Date) {
+            return -1;
+          } else if (a.Date > b.Date) {
+            return 1;
+          } else {
+            return 0;
+          }
+        })
+      };
     });
   }
 

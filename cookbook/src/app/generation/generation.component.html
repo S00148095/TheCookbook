@@ -1,14 +1,14 @@
 <div class="middle" *ngIf="CheckVisibility()">
   <div class="row">
-    <div class="col-md-4 middle">
+    <div class="col-md-4 centred">
+      <p>Meals generated: {{numGenerated}} of {{numWanted}}</p>
+    </div>
+    <div class="col-md-4">
       <button class="inline btn btn-primary right" (click)="Decrement()">
         <span class="glyphicon glyphicon-minus"></span>
       </button>
     </div>
-    <div class="col-md-4 middle centred">
-      <p>Meals generated: {{numGenerated}} of {{numWanted}}</p>
-    </div>
-    <div class="col-md-4 middle">
+    <div class="col-md-4">
       <button class="inline btn btn-primary" (click)="Increment()">
         <span class="glyphicon glyphicon-plus"></span>
       </button>
