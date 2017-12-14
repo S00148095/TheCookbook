@@ -12,8 +12,10 @@ import { Title } from '@angular/platform-browser';
 export class StorageService {
     public uid: string = '';
     public userInfo: User;
+    //Connection strings to spoonacular and firebase
     url: string = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/';
     firebaseURL: string = 'https://the-cookbook.firebaseio.com/';
+    //http headers when sending to firebase
     private httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
@@ -21,30 +23,31 @@ export class StorageService {
     constructor(private db: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient, private router: Router, private title: Title) {
         this.GetUID();
     }
-    //Get's the user info on login
+    //Gets the user info on login
     GetUserInfo(): Observable<any> {
         return this.http.get(this.firebaseURL + "users/" + this.uid + ".json")
     }
-
+    //Updates the title element in the head of the page
     updateTitle(value) {
         this.title.setTitle(value);
     }
-
+    //Clear user variables on logout
     LogOut() {
         this.uid = "";
         this.userInfo = null;
     }
-
+    //Gets user ID on login for use to get their data
     GetUID() {
         this.afa.authState.subscribe((resp) => {
             if (resp != null) {
+                //As long as it is a vaild user ID
                 if (resp.uid) {
                     this.uid = resp.uid;
                 }
             }
         });
     }
-    //On Creation of a new user
+    //Post new user to the database
     sendPostRequestNewUser(postData: any, user: string) {
         this.http.patch(this.firebaseURL + "users/" + user + ".json", postData).subscribe(res => {
             console.log(res);
@@ -87,24 +90,27 @@ export class StorageService {
             this.httpOptions
         );
     }
-
+    //Get a list of random recipes for the home component
     sendGetRequestRandomRecipes(): Observable<any> {
         return this.http.get(this.url + "recipes/" + "random?limitLicense=true&number=10", {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }
-
+    //Gets a recipe details for the recipe details component
     sendGetRequestRecipeByID(ID): Observable<any> {
         return this.http.get(this.url + "recipes/" + ID + "/information?includeNutrition=false", {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }
-
+    //Used on the login component when a user registers for the first time
+    //and is inputting their allergies and dislikes, will return item based
+    //on what they typed
     sendGetRequestAutocomplete(value): Observable<any> {
         return this.http.get(this.url + "food/ingredients/autocomplete?metaInformation=false&number=5&query=" + value, {
             headers: new HttpHeaders().set('X-Mashape-Key', 'tM5qhvbLgOmshXF6C08zcPSGG80vp1z3sj9jsnF0zNHLYcu6A8'),
         });
     }
+    //Updates the users schedule and shopping list
     sendPostRequestUpdateScheduleAndShoppingList(postData) {
         this.http.patch(this.firebaseURL + "/users/" + this.uid + ".json", postData).subscribe(res => {
             this.router.navigate(['../schedule']);

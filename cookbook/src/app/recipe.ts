@@ -1,3 +1,4 @@
+//Used when displaying a recipe on the recipe details page and the home page
 import { Ingredient } from "./Ingredient";
 
 export interface Recipe {
