@@ -1,5 +1,5 @@
-export const environment = {
-  production: true,
+export const environment = {//firebase details
+  production: true,  
   firebase: {
     apiKey: "AIzaSyDZFTDf5-U8rJqWhMKwJXxe_zMz12peZLw",
     authDomain: "the-cookbook.firebaseapp.com",

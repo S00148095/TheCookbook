@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
     this.GetUserInfo();
     this.service.updateTitle("Dashboard - The Cookbook");
   }
-  
+  //Adds styling to text if it is marked as done
   CheckedMarked(done: string) {
     if (done === "Yes") {
       return "line-through";

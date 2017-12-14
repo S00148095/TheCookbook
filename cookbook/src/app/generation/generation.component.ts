@@ -8,6 +8,7 @@ import { Meal } from '../Meal';
 import { DatePipe } from '@angular/common';
 
 declare var myExtObject: any;
+//Importing JS files into component: https://plnkr.co/edit/b2kAztHntMuNjTfOv8jD?p=preview
 
 @Component({
   selector: 'app-generation',
@@ -26,9 +27,9 @@ export class GenerationComponent {
     this.GetRecipes();
     this.numWanted = 1;
     this.numGenerated = 0;
-    this.service.GetUserInfo().subscribe(res => {
+    this.service.GetUserInfo().subscribe(res => {//calls a method from the service to get the details of the current user
       this.userInfo = res;
-      if (this.userInfo.ShoppingList==undefined)
+      if (this.userInfo.ShoppingList==undefined)//sets the arrays in case the user had none in the database
       {
         this.userInfo.ShoppingList=[];
       }
@@ -43,57 +44,57 @@ export class GenerationComponent {
     });
   }
   OpenModal() {
-    myExtObject.openModal();
+    myExtObject.openModal();//calls external javascript to open the modal
   }
-  Decrement()
+  Decrement()//decrements the number of meals the user wantss to generate
   {
     this.numWanted--;
     if(this.numGenerated>=this.numWanted)
     {    
-      this.service.sendPostRequestUpdateScheduleAndShoppingList(this.formatPost());
+      this.service.sendPostRequestUpdateScheduleAndShoppingList(this.formatPost());//if the user has generated enough meals post to database
     }
   }
-  Increment()
+  Increment()//increments the number of meals the user wants to generate
   {
     this.numWanted++;
   }
-  GetRecipes() {
+  GetRecipes() {//gets recipes by calling the API through the service
     this.service.sendGetRequestRandomRecipes()
       .subscribe(res => {
-        this.recipes = res.recipes;
+        this.recipes = res.recipes;//assigns the response to the array to display them
       });
   }
-  RemoveRecipe() {
+  RemoveRecipe() {//removes a recipe from the array and gets new ones if needed
     this.recipes.splice(0, 1);
     if (this.recipes.length <= 0) {
       this.GetRecipes();
     }
   }
-  AddRecipe() {
+  AddRecipe() {//adds a recipe to the recipes the user has decide to keep
     this.selectedRecipes.push(this.recipes[0]);
     this.numGenerated++;
     this.RemoveRecipe();
-    if(this.numGenerated>=this.numWanted)
+    if(this.numGenerated>=this.numWanted)//if enough have been generated post to database
     {    
       this.service.sendPostRequestUpdateScheduleAndShoppingList(this.formatPost());
     }
   }
-  formatPost() {
+  formatPost() {//formats the data into JSON format to post to the database
     this.selectedRecipes.forEach(element => {
-      this.tempMeal={Meal:element.title,Date:this.datePipe.transform(new Date(), 'dd-MM-yyyy'),ID:element.id.toString()}
-      this.userInfo.Schedule.push(this.tempMeal);
-      element.extendedIngredients.forEach(ingredient => {
+      this.tempMeal={Meal:element.title,Date:this.datePipe.transform(new Date(), 'dd-MM-yyyy'),ID:element.id.toString()}//creates a temporary meal
+      this.userInfo.Schedule.push(this.tempMeal);//adds the meal to the user's schedule
+      element.extendedIngredients.forEach(ingredient => {//adds the ingredients from the recipes to the user's shopping list 
         this.userInfo.ShoppingList.push({"Done" : "No",
         "Ingredient" : ingredient.name,
         "Quantity" : ingredient.amount+" "+ingredient.unit});
       });
     });
-    return {
+    return {//returns data in JSON format
       "Schedule": this.userInfo.Schedule,
       "ShoppingList":this.userInfo.ShoppingList
     }
   }
-  CheckVisibility() {
+  CheckVisibility() {//checks if there are recipes to show and if not the loading screen is shown
     if (this.recipes != undefined && this.recipes != null) {
       if (this.recipes.length > 0) {
         return true;
@@ -103,7 +104,7 @@ export class GenerationComponent {
     else return false;
   }
   ngAfterViewInit() {
-    this.service.updateTitle("Generation - The Cookbook");
+    this.service.updateTitle("Generation - The Cookbook");//updates the title
     this.OpenModal();
   }
 }

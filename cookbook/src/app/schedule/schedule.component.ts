@@ -7,6 +7,7 @@ import { AfterViewInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { ToastsManager } from 'ng2-toastr';
 import { AuthService } from '../services/auth.service';
 import 'script.js';
+//Importing JS files into component: https://plnkr.co/edit/b2kAztHntMuNjTfOv8jD?p=preview
 import { DragulaService } from 'ng2-dragula';
 
 declare var myExtObject: any;
@@ -45,9 +46,9 @@ export class ScheduleComponent implements AfterViewInit {
   hasDropped: boolean;
 
   constructor(public authService: AuthService, private dragulaService: DragulaService, private service: StorageService, private datePipe: DatePipe, public toastr: ToastsManager, vcr: ViewContainerRef) {
-    this.toastr.setRootViewContainerRef(vcr);
+    this.toastr.setRootViewContainerRef(vcr);//sets the view container for the toasts
     this.hasDropped = false;
-    this.service.GetUserInfo().subscribe(res => {
+    this.service.GetUserInfo().subscribe(res => {//gets the current user
       this.userInfo = res;
       this.testSchedule = this.userInfo.Schedule;
       this.now = new Date;
@@ -55,34 +56,36 @@ export class ScheduleComponent implements AfterViewInit {
       this.DateRangeEnd = new Date;
       this.SetEndDate();
     });
-    dragulaService.drop.subscribe((value: any) => {
+    dragulaService.drop.subscribe((value: any) => {//if a meal has been dragged show the buttons
       this.hasDropped = true;
+      //dragula service: https://github.com/valor-software/ng2-dragula
     });
   }
-  Remove(i) {
+  Remove(i) {//remove a meal
     this.testSchedule.splice(i, 1);
   }
-  toDate(date) {
-    var datearray = date.split("-");
+  toDate(date) {//convert from dd-mm-yyyy to mm-dd-yyyy for testing with Date.parse
+    var datearray = date.split("-");//splits the date by -
     return datearray[1] + '-' + datearray[0] + '-' + datearray[2];
+    //Converting dates: https://stackoverflow.com/questions/5433313/convert-dd-mm-yyyy-to-mm-dd-yyyy-in-javascript
   }
-  CheckVisibility() {
+  CheckVisibility() {//checks if there is a user to show
     if (this.userInfo != undefined && this.userInfo != null) return true;
     else return false;
   }
-  Commit() {
+  Commit() {//commits data to the database(full schedule edit)
     if (this.testSchedule!=undefined) {
       for (var i = 0; i < this.testSchedule.length; i++) {
-        if (Date.parse(this.toDate(this.testSchedule[i].Date))) {
-          if (i == this.testSchedule.length - 1) {
+        if (Date.parse(this.toDate(this.testSchedule[i].Date))) {//checks if the dates are valid
+          if (i == this.testSchedule.length - 1) {//if this is the last meal, push to database
             this.userInfo.Schedule = this.testSchedule;
             this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));
             this.authService.showSuccess("Saved successfully");
-            this.splitSchedule();
-            myExtObject.Expand();
+            this.splitSchedule();//refreshes interface
+            myExtObject.Expand();//closes accordian
           }
         }
-        else {
+        else {//resets and shows an error if there is an invalid date
           this.testSchedule = [];
           this.service.GetUserInfo().subscribe(res => {
             this.userInfo = res;
@@ -97,30 +100,30 @@ export class ScheduleComponent implements AfterViewInit {
       myExtObject.Expand();
     }
   }
-  formatPost(array) {
+  formatPost(array) {//puts the data into JSON format 
     return {
       "Schedule": array
     }
   }
-  Revert() {
+  Revert() {//reverts back to original data on hitting cancel
     this.splitSchedule();
     this.hasDropped = false;
   }
-  RevertFull() {
+  RevertFull() {//gets the users data from the databse to reset the data in the full schedule accordian
     this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
       this.testSchedule = this.userInfo.Schedule;
     });
   }
-  CommitDrag(array) {
-    this.userInfo.Schedule.forEach(element => {
+  CommitDrag(array) {//commits data to the database(full schedule edit)
+    this.userInfo.Schedule.forEach(element => {//puts all meals outside of the current date range into the array to go back to the database 
       if (element.Date > this.DateRangeEndString || element.Date < this.DateRangeStartString) {
         this.temp.push(element);
       }
     });
-    this.userInfo.Schedule = [];
+    this.userInfo.Schedule = [];//resets the user's schedule to remove the meals in the current date range
     this.userInfo.Schedule = this.temp;
-    this.scheduleDay1.forEach(element => {
+    this.scheduleDay1.forEach(element => {//for each day add the meals in that day to the schedule
       element.Date = this.DateRangeStartString;
       this.userInfo.Schedule.push(element);
     });
@@ -148,11 +151,11 @@ export class ScheduleComponent implements AfterViewInit {
       element.Date = this.DateRangeEndString;
       this.userInfo.Schedule.push(element);
     });
-    this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));
+    this.service.sendPostRequestUpdateSchedule(this.formatPost(this.userInfo.Schedule));//sends newly sorted data to database
     this.authService.showSuccess("Saved successfully");
     this.hasDropped = false;
   }
-  splitSchedule() {
+  splitSchedule() {//splits the master user schedule into arrays for each day in the date range to show on ui
     this.scheduleDay1 = [];
     this.scheduleDay2 = [];
     this.scheduleDay3 = [];
@@ -161,7 +164,7 @@ export class ScheduleComponent implements AfterViewInit {
     this.scheduleDay6 = [];
     this.scheduleDay7 = [];
 
-    this.userInfo.Schedule.forEach(element => {
+    this.userInfo.Schedule.forEach(element => {//splits meals by date
       if (element.Date == this.DateRangeStartString) {
         this.scheduleDay1.push(element);
       }
@@ -185,7 +188,7 @@ export class ScheduleComponent implements AfterViewInit {
       }
     });
   }
-  SetEndDate() {
+  SetEndDate() {//sets the dates and date strings for the days after the start day
     this.DateRangeEnd = this.addDays(this.DateRangeStart, 6);
     this.DateRangeStartString = this.datePipe.transform(this.DateRangeStart, 'dd-MM-yyyy');
     this.DateRangeEndString = this.datePipe.transform(this.DateRangeEnd, 'dd-MM-yyyy');
@@ -203,24 +206,25 @@ export class ScheduleComponent implements AfterViewInit {
       this.splitSchedule();
     }
   }
-  Previous() {
+  Previous() {//sets the start day to seven days before the current start day
     this.DateRangeStart = this.addDays(this.DateRangeStart, -7);
     this.SetEndDate();
   }
-  Now() {
+  Now() {//sets the start day to today
     this.DateRangeStart = this.addDays(this.now, 0);
     this.SetEndDate();
   }
-  Next() {
+  Next() {//sets the start day to seven days after the current start day
     this.DateRangeStart = this.addDays(this.DateRangeStart, 7);
     this.SetEndDate();
   }
-  addDays(date, days) {
+  addDays(date, days) {//adds a number days to a date and returns the date
     var result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
+    //Adding days to date: https://stackoverflow.com/questions/563406/add-days-to-javascript-date
   }
   ngAfterViewInit(): void {
-    this.service.updateTitle("Schedule - The Cookbook");
+    this.service.updateTitle("Schedule - The Cookbook");//updates the title
   }
 }

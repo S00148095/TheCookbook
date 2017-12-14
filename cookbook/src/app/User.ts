@@ -1,3 +1,4 @@
+//Used with the user info from the database
 import { Meal } from "./Meal";
 
 export interface User {
