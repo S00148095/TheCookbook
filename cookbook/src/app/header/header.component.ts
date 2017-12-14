@@ -21,13 +21,13 @@ export class HeaderComponent implements OnInit {
   CheckLogOut(): boolean {
     return this.login;
   }
-  Logout() {
+  Logout() {//logs the user out, including clearing data from the service
     this.authService.logout();
     this.login=false;
     this.service.LogOut();
     this.router.navigateByUrl("../home");
   }
-  CheckUser() {
+  CheckUser() {//checks if the user is logged in
     this.firebaseAuth.authState.subscribe((resp) => {
       if (resp != null) {
         if (resp.uid) {
@@ -38,7 +38,7 @@ export class HeaderComponent implements OnInit {
       else{this.login=false;}
     });
   }
-
+//getting auth state: https://angularfirebase.com/snippets/angularfire2-version-4-authentication-service/
   ngOnInit() {
     this.CheckUser();
   }
