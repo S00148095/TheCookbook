@@ -17,7 +17,7 @@
             <h3 class="nav-header" [routerLink]="['../shoppinglist']">Shopping List</h3>
           </div>
           <div class="text-center">
-            <button type="button" class="btn btn-success" [routerLink]="['../shoppinglist']">Edit</button>
+            <button type="button" class="btn btn-block btn-success" [routerLink]="['../shoppinglist']">Edit</button>
           </div>
       <ul class="list-group" *ngIf="userInfo.ShoppingList; else noShoppingList">
         <li [style.text-decoration]="CheckedMarked(shoppingListItem.Done)" class="list-group-item col-md-6 col-sm-12" *ngFor="let shoppingListItem of userInfo.ShoppingList">{{shoppingListItem.Ingredient}} ({{shoppingListItem.Quantity}})</li>
@@ -35,7 +35,7 @@
           <h3 class="nav-header" [routerLink]="['../schedule']">Schedule</h3>
         </div>
         <div class="text-center">
-          <button type="button" class="btn btn-success" [routerLink]="['../schedule']">Edit</button>
+          <button type="button" class="btn btn-block btn-success" [routerLink]="['../schedule']">Edit</button>
         </div>
         <div *ngIf="userInfo.ShoppingList; else noSchedule">
           <li class="list-group-item" *ngFor="let scheduleItem of filteredDates" (click)="MoveToDetails(scheduleItem)">{{scheduleItem.Meal}} ({{scheduleItem.Date}})</li>
