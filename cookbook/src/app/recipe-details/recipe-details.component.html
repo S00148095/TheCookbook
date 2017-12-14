@@ -16,6 +16,10 @@
       </div>
       <br/>
       <div class="col-md-6">
+        <img *ngIf="recipe.image" [src]="recipe.image" class="img-thumbnail">
+        <button class="btn btn-block btn-primary" (click)="Add()">Add to schedule</button>
+      </div>
+      <div class="col-md-6">
         <p *ngIf="recipe.readyInMinutes">Time: {{recipe.readyInMinutes}} minutes</p>
         <p *ngIf="recipe.servings">Serves: {{recipe.servings}}</p>
         <br/>
@@ -24,9 +28,6 @@
           <li *ngFor="let ingredient of recipe.extendedIngredients">{{ingredient.name}} - {{ingredient.amount}} {{ingredient.unitLong}}</li>
         </div>
         <br/>
-      </div>
-      <div class="col-md-6">
-        <img *ngIf="recipe.image" [src]="recipe.image" class="img-thumbnail">
       </div>
     </div>
     <div class="col" *ngIf="recipe.analyzedInstructions[0]">
