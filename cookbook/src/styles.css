@@ -346,24 +346,14 @@ body {
     {
         display:none;
     }
+    .hoverable
+    {
+        padding:4px;
+    }
 }
 @media (max-width: 768px) {
     .btn {
       font-size:11px!important;
-      padding:4px 6px!important;
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .btn {
-      font-size:12px!important;
-      padding:6px 12px!important;
-    }
-  }
-  
-  @media (min-width: 992px) {
-    .btn {
-      font-size:14px!important;
-      padding:8px 12px!important;
+      padding:2px 3px!important;
     }
   }
