@@ -1,29 +1,12 @@
-/*
-Colour scheme:
-Green:#00E676
-White:#FAFAFA
-Blue:bootstrap primary blue buttons
-*/
-
-/*.header
-{
-    height:10%;
-    background-color: #00E676;
-    color: #FAFAFA;
-    padding-top: 0.1%;
-    top:0px;
-    z-index: 1;
-    width: 100%;
-    display: inline-block;
-}*/
-
 @import url('https://fonts.googleapis.com/css?family=Satisfy');
 
 .navbar-default {
     background: #00E676 !important;
     color: #FAFAFA;
 }
-
+/* CSS Animations for hamburger menu */
+/* Adapted from: https://bootsnipp.com/snippets/m043n */
+/* Accessed 11/12/2017 */
 .navbar-toggle {
     margin: 0;
     height: 50px;
