@@ -35,7 +35,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import { DragulaModule } from 'ng2-dragula';
 
-const routes: Routes = [
+const routes: Routes = [//routing
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'shoppinglist', component: ShoppingListComponent, canActivate: [AuthService] },

@@ -15,7 +15,8 @@ export class RecipeComponent implements OnInit {
 
   MoveToDetails()
   {
-    this.router.navigate(["../details"],{ queryParams: { id: this.recipe.id } });
+    this.router.navigate(["../details"],{ queryParams: { id: this.recipe.id } });//navigates to the details page and sets the queryParams
+    //queryParams: https://alligator.io/angular/query-parameters/
   }
   ngOnInit() {
   }

@@ -11,24 +11,23 @@ import { StorageService } from '../services/storage.service';
 export class HomeComponent implements OnInit {
   showButton: boolean;
   recipes: any[] = []
-  constructor(private service:StorageService) {
-    
+  constructor(private service:StorageService) {    
    }
 
-  GetRecipes()
+  GetRecipes()//gets recipes to display from the API
   {
-    this.showButton=false;
+    this.showButton=false;//hides the button and shows the loading screen
     this.service.sendGetRequestRandomRecipes()
     .subscribe(res => {
-      this.showButton=true;
-      res.recipes.forEach(element => {        
+      this.showButton=true;//shows the button
+      res.recipes.forEach(element => {//assigns the recipes to the display array       
       this.recipes.push(element);
     });
   });
   }
   CheckVisibility()
   {
-    if(this.recipes!=undefined&&this.recipes!=null)
+    if(this.recipes!=undefined&&this.recipes!=null)//ensures there are recipes to show and shows the loading screen if there aren't
     {
       if(this.recipes.length>0)
       {
@@ -40,6 +39,6 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit() {
     this.GetRecipes();
-    this.service.updateTitle("Home - The Cookbook");
+    this.service.updateTitle("Home - The Cookbook");//updates title
   }
 }
