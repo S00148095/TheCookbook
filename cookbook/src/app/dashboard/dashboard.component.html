@@ -13,13 +13,12 @@
     </div>
     <hr>
     <div class="row">
-      <div class="text-center">
-        <h1>Shopping List
-          <div class="pull-right">
+        <div class="text-center">
+            <h3 class="nav-header" [routerLink]="['../shoppinglist']">Shopping List</h3>
+          </div>
+          <div class="text-center">
             <button type="button" class="btn btn-success" [routerLink]="['../shoppinglist']">Edit</button>
           </div>
-        </h1>
-      </div>
       <ul class="list-group" *ngIf="userInfo.ShoppingList; else noShoppingList">
         <li [style.text-decoration]="CheckedMarked(shoppingListItem.Done)" class="list-group-item col-md-6 col-sm-12" *ngFor="let shoppingListItem of userInfo.ShoppingList">{{shoppingListItem.Ingredient}} ({{shoppingListItem.Quantity}})</li>
       </ul>
