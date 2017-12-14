@@ -1,15 +1,21 @@
 <div class="list-group" *ngIf="userInfo">
   <div *ngFor="let shopping of userInfo.ShoppingList; let i = index">
     <li [style.text-decoration]="CheckedMarked(shopping.Done)" [id]="i" class="list-group-item clearfix" *ngIf="boolArray[i]; else EditShoppingListItem">{{shopping.Ingredient}} ({{shopping.Quantity}})
-      <button type="button" id="Remove" class="btn btn-danger icon" (click)="RemoveItem(i)">
-        <span class="glyphicon glyphicon-remove"></span>
+      <button class="btn btn-secondary dropdown-toggle pull-right" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Options
       </button>
-      <button type="button" id="Remove" class="btn btn-primary icon" (click)="EditItem(i, shopping.Ingredient, shopping.Quantity)">
-        <span class="glyphicon glyphicon-pencil"></span>
-      </button>
-      <button type="button" id="Success" class="btn btn-success icon" (click)="MarkSuccess(i)">
-        <span class="glyphicon glyphicon-ok"></span>
-      </button>
+      <div class="dropdown-menu pull-right" aria-labelledby="dropdownMenuButton">
+        <button type="button" id="Remove" class="btn btn-danger icon" (click)="RemoveItem(i)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <button type="button" id="Remove" class="btn btn-primary icon" (click)="EditItem(i, shopping.Ingredient, shopping.Quantity)">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </button>
+        <button type="button" id="Success" class="btn btn-success icon" (click)="MarkSuccess(i)">
+          <span class="glyphicon glyphicon-ok"></span>
+        </button>
+      </div>
     </li>
   </div>
   <li class="list-group-item clearfix">

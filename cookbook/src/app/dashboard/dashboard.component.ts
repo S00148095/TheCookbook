@@ -21,7 +21,9 @@ export class DashboardComponent implements OnInit {
   GetUserInfo() {
     this.service.GetUserInfo().subscribe(res => {
       this.userInfo = res;
+      //Only checks if the schedule exists
       if (this.userInfo.Schedule != null || this.userInfo.Schedule != undefined) {
+        //Sorts dates by closest
         this.filteredDates = this.userInfo.Schedule.sort(function (a, b) {
           if (a.Date < b.Date) {
             return -1;
@@ -42,5 +44,14 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.GetUserInfo();
     this.service.updateTitle("Dashboard - The Cookbook");
+  }
+  
+  CheckedMarked(done: string) {
+    if (done === "Yes") {
+      return "line-through";
+    }
+    else {
+      return "";
+    }
   }
 }

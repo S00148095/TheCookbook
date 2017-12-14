@@ -21,6 +21,7 @@ export class StorageService {
     constructor(private db: AngularFireDatabase, private afa: AngularFireAuth, private http: HttpClient, private router: Router, private title: Title) {
         this.GetUID();
     }
+    //Get's the user info on login
     GetUserInfo(): Observable<any> {
         return this.http.get(this.firebaseURL + "users/" + this.uid + ".json")
     }
@@ -43,39 +44,41 @@ export class StorageService {
             }
         });
     }
-
+    //On Creation of a new user
     sendPostRequestNewUser(postData: any, user: string) {
         this.http.patch(this.firebaseURL + "users/" + user + ".json", postData).subscribe(res => {
             this.router.navigate(['../dashboard']);
         });
     }
+    //Updates the schedule for a user
     sendPostRequestUpdateSchedule(postData: Object) {
         this.http.patch(this.firebaseURL + "/users/" + this.uid + ".json",
             postData).subscribe(res => {
             }
         );
     }
+    //Any updates to the shopping list
     UpdateShoppingList(shoppingList: Object): Observable<any> {
         return this.http.patch(this.firebaseURL + "/users/" + this.uid + "/ShoppingList.json",
             shoppingList,
             this.httpOptions
         );
     }
-
+    //Changes done from no to yes
     MarkShoppingListItem(shoppingList, index) {
         return this.http.patch(this.firebaseURL + "/users/" + this.uid + "/ShoppingList/" + index + ".json",
             shoppingList,
             this.httpOptions
         );
     }
-
+    //Allows the editing of items in shopping list
     EditShoppingListItem(shoppingList) {
         return this.http.patch(this.firebaseURL + "/users/" + this.uid + "/ShoppingList.json",
             shoppingList,
             this.httpOptions
         );
     }
-
+    //Delete item from shopping list
     RemoveShoppingListItem(shoppingList): Observable<any> {
         return this.http.put(this.firebaseURL + "/users/" + this.uid + "/ShoppingList.json",
             shoppingList,

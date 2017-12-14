@@ -23,8 +23,9 @@ export class LoginComponent implements OnInit {
   bannedIngredients: string[] = [];
   bannedIngredientsTest: string[] = [];
   test: string = "";
+  login:boolean;
 
-  constructor(public authService: AuthService, private router: Router, public af: AngularFireAuth, public toastr: ToastsManager, vcr: ViewContainerRef, private service: StorageService) {
+  constructor(public firebaseAuth: AngularFireAuth,public authService: AuthService, private router: Router, public af: AngularFireAuth, public toastr: ToastsManager, vcr: ViewContainerRef, private service: StorageService) {
       this.toastr.setRootViewContainerRef(vcr);
     }
   Signup() {
@@ -69,8 +70,20 @@ export class LoginComponent implements OnInit {
       this.test = "";
       this.ingredients = [];
     }
+    CheckUser() {
+      this.firebaseAuth.authState.subscribe((resp) => {
+        if (resp != null) {
+          if (resp.uid) {
+            this.login = true;
+          }
+          else{this.login=false;}
+        }
+        else{this.login=false;}
+      });
+    }
   public ngOnInit(): void {
     this.service.updateTitle("Login - The Cookbook");
+    this.CheckUser();
     }
   }
 
