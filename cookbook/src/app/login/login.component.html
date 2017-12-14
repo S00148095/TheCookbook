@@ -1,4 +1,4 @@
-<div class="padded">
+<div class="padded" *ngIf="!login">
   <div class="form-group">
     <label for="Email">Email address</label>
     <input type="email" [(ngModel)]="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -39,12 +39,15 @@
       </div>
     </div>
     <div class="btn-group btn-group-justified" role="group">
-      <a type="button" class="btn btn-primary" onclick="Expand()">Have an Account?</a>
+      <a type="button" class="btn btn-primary" onclick="Expand()">Login?</a>
       <a type="button" class="btn btn-primary" (click)="Signup()">Create Account</a>
     </div>
   </div>
   <div class="btn-group btn-group-justified contentvisible" role="group">
-    <a type="button" class="btn btn-primary" onclick="Expand()">Don't have an Account?</a>
+    <a type="button" class="btn btn-primary" onclick="Expand()">No Account?</a>
     <a type="button" class="btn btn-primary" (click)="Login()">Log In</a>
   </div>
+</div>
+<div *ngIf="login">
+  <h1>Are you sure you're meant to be here? Were you trying to log out?</h1>
 </div>

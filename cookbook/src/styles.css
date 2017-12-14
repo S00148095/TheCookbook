@@ -334,36 +334,30 @@ body {
     }
     h2
     {
-        font-size: 12px!important;
+        font-size: 13px!important;
         margin:1px!important;
     }
     p
     {
-        font-size: 10px!important;
+        font-size: 11px!important;
         margin:1px!important;
     }
     .tinyicon
     {
         display:none;
     }
+    table
+    {
+        width:100%;
+    }
+    .hoverable
+    {
+        padding:3px;
+    }
 }
 @media (max-width: 768px) {
     .btn {
-      font-size:11px!important;
-      padding:4px 6px!important;
+      font-size:10px!important;
+      padding:2px 3px!important;
     }
-  }
-  
-  @media (min-width: 768px) {
-    .btn {
-      font-size:12px!important;
-      padding:6px 12px!important;
-    }
-  }
-  
-  @media (min-width: 992px) {
-    .btn {
-      font-size:14px!important;
-      padding:8px 12px!important;
-    }
-  }
+  }  
